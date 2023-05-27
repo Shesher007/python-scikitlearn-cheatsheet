@@ -1,18 +1,3 @@
----
-jupyter:
-  jupytext:
-    formats: ipynb,md
-    text_representation:
-      extension: .md
-      format_name: markdown
-      format_version: '1.3'
-      jupytext_version: 1.14.4
-  kernelspec:
-    display_name: Python 3 (ipykernel)
-    language: python
-    name: python3
----
-
 # scikit-learn - Machine Learning in Python
 
 * Simple and efficient tools for predictive data analysis
@@ -21,6 +6,128 @@ jupyter:
 * Open source, commercially usable - BSD license
 
 > Regressions ++ Classifications ++ Clustering ++ Dimensionality Reduction ++ Model Selection ++ Pre-processing
+
+
+<!-- TOC -->
+
+- [scikit-learn - Machine Learning in Python](#scikit-learn---machine-learning-in-python)
+  - [Working with Missing Values](#working-with-missing-values)
+    - [Missing Indicator](#missing-indicator)
+    - [Simple Imputer](#simple-imputer)
+    - [Drop Missing Data](#drop-missing-data)
+  - [Categorical Data Preprocessing](#categorical-data-preprocessing)
+    - [Ordinal Encoder](#ordinal-encoder)
+    - [Label Encoder](#label-encoder)
+    - [OneHot  Encoder](#onehot--encoder)
+  - [Loading SK Datasets](#loading-sk-datasets)
+    - [Toy Datasets](#toy-datasets)
+    - [Real World Datasets](#real-world-datasets)
+    - [OpenML Datasets](#openml-datasets)
+  - [Regression Models](#regression-models)
+    - [Simple Linear Regression](#simple-linear-regression)
+      - [Data Pre-processing](#data-pre-processing)
+      - [Model Training](#model-training)
+      - [Predictions](#predictions)
+      - [Model Evaluation](#model-evaluation)
+    - [ElasticNet Regression](#elasticnet-regression)
+      - [Dataset](#dataset)
+      - [Preprocessing](#preprocessing)
+      - [Grid Search for Hyperparameters](#grid-search-for-hyperparameters)
+      - [Model Evaluation](#model-evaluation-1)
+    - [Multiple Linear Regression](#multiple-linear-regression)
+  - [Logistic Regression Model](#logistic-regression-model)
+    - [Binary Logistic Regression](#binary-logistic-regression)
+      - [Dataset](#dataset-1)
+      - [Model Fitting](#model-fitting)
+      - [Model Predictions](#model-predictions)
+      - [Model Evaluation](#model-evaluation-2)
+  - [Logistic Regression Pipelines](#logistic-regression-pipelines)
+    - [Dataset Preprocessing](#dataset-preprocessing)
+    - [Pipeline](#pipeline)
+  - [Cross Validation](#cross-validation)
+    - [Train | Test Split](#train--test-split)
+      - [Dataset Preprocessing](#dataset-preprocessing-1)
+      - [Model Fitting](#model-fitting-1)
+      - [Model Evaluation](#model-evaluation-3)
+      - [Adjusting Hyper Parameter](#adjusting-hyper-parameter)
+    - [Train | Validation | Test Split](#train--validation--test-split)
+      - [Dataset Preprocessing](#dataset-preprocessing-2)
+      - [Model Fitting and Evaluation](#model-fitting-and-evaluation)
+      - [Adjusting Hyper Parameter](#adjusting-hyper-parameter-1)
+    - [k-fold Cross Validation](#k-fold-cross-validation)
+      - [Dataset Preprocessing](#dataset-preprocessing-3)
+      - [Model Scoring](#model-scoring)
+      - [Adjusting Hyper Parameter](#adjusting-hyper-parameter-2)
+      - [Model Fitting and Final Evaluation](#model-fitting-and-final-evaluation)
+    - [Cross Validate](#cross-validate)
+      - [Dataset (re-import)](#dataset-re-import)
+      - [Model Scoring](#model-scoring-1)
+      - [Adjusting Hyper Parameter](#adjusting-hyper-parameter-3)
+      - [Model Fitting and Final Evaluation](#model-fitting-and-final-evaluation-1)
+    - [Grid Search](#grid-search)
+      - [Hyperparameter Search](#hyperparameter-search)
+      - [Model Evaluation](#model-evaluation-4)
+  - [KNN Algorithm](#knn-algorithm)
+    - [Dataset](#dataset-2)
+    - [Data Pre-processing](#data-pre-processing-1)
+    - [Model Fitting](#model-fitting-2)
+  - [Decision Tree Classifier](#decision-tree-classifier)
+    - [Dataset](#dataset-3)
+    - [Preprocessing](#preprocessing-1)
+    - [Model Fitting](#model-fitting-3)
+    - [Evaluation](#evaluation)
+  - [Random Forest Classifier](#random-forest-classifier)
+    - [Dataset](#dataset-4)
+    - [Preprocessing](#preprocessing-2)
+    - [Model Fitting](#model-fitting-4)
+    - [Evaluation](#evaluation-1)
+  - [Random Forest Hyperparameter Tuning](#random-forest-hyperparameter-tuning)
+    - [Testing Hyperparameters](#testing-hyperparameters)
+    - [Grid-Search Cross-Validation](#grid-search-cross-validation)
+    - [Random Forest Classifier 1 - Penguins](#random-forest-classifier-1---penguins)
+      - [Feature Importance](#feature-importance)
+      - [Model Evaluation](#model-evaluation-5)
+    - [Random Forest Classifier - Banknote Authentication](#random-forest-classifier---banknote-authentication)
+      - [Grid Search for Hyperparameters](#grid-search-for-hyperparameters-1)
+      - [Model Training and Evaluation](#model-training-and-evaluation)
+      - [Optimizations](#optimizations)
+  - [Random Forest Regressor](#random-forest-regressor)
+    - [vs Linear Regression](#vs-linear-regression)
+    - [vs Polynomial Regression](#vs-polynomial-regression)
+    - [vs KNeighbors Regression](#vs-kneighbors-regression)
+    - [vs Decision Tree Regression](#vs-decision-tree-regression)
+    - [vs Support Vector Regression](#vs-support-vector-regression)
+    - [vs Gradient Boosting Regression](#vs-gradient-boosting-regression)
+    - [vs Ada Boosting Regression](#vs-ada-boosting-regression)
+    - [Finally, Random Forrest Regression](#finally-random-forrest-regression)
+  - [SVC Model](#svc-model)
+    - [Dataset](#dataset-5)
+      - [Preprocessing](#preprocessing-3)
+      - [Model Training](#model-training-1)
+      - [Model Evaluation](#model-evaluation-6)
+    - [Margin Plots for Support Vector Classifier](#margin-plots-for-support-vector-classifier)
+      - [SVC with a Linear Kernel](#svc-with-a-linear-kernel)
+      - [SVC with a Radial Basis Function Kernel](#svc-with-a-radial-basis-function-kernel)
+      - [SVC with a Sigmoid Kernel](#svc-with-a-sigmoid-kernel)
+      - [SVC with a Polynomial Kernel](#svc-with-a-polynomial-kernel)
+    - [Grid Search for Support Vector Classifier](#grid-search-for-support-vector-classifier)
+    - [Support Vector Regression](#support-vector-regression)
+      - [Base Model Run](#base-model-run)
+      - [Grid Search for better Hyperparameter](#grid-search-for-better-hyperparameter)
+    - [Example Task - Wine Fraud](#example-task---wine-fraud)
+      - [Data Exploration](#data-exploration)
+      - [Regression Model](#regression-model)
+  - [Boosting Methods](#boosting-methods)
+    - [Dataset Exploration](#dataset-exploration)
+    - [Adaptive Boosting](#adaptive-boosting)
+      - [Feature Exploration](#feature-exploration)
+      - [Optimizing Hyperparameters](#optimizing-hyperparameters)
+    - [Gradient Boosting](#gradient-boosting)
+      - [Gridsearch for best Hyperparameter](#gridsearch-for-best-hyperparameter)
+      - [Feature Importance](#feature-importance-1)
+
+<!-- /TOC -->
+
 
 ```python
 import matplotlib.pyplot as plt
