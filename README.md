@@ -23,7 +23,7 @@
     - [Toy Datasets](#toy-datasets)
     - [Real World Datasets](#real-world-datasets)
     - [OpenML Datasets](#openml-datasets)
-  - [Regression Models](#regression-models)
+  - [Supervised Learning - Regression Models](#supervised-learning---regression-models)
     - [Simple Linear Regression](#simple-linear-regression)
       - [Data Pre-processing](#data-pre-processing)
       - [Model Training](#model-training)
@@ -35,55 +35,53 @@
       - [Grid Search for Hyperparameters](#grid-search-for-hyperparameters)
       - [Model Evaluation](#model-evaluation-1)
     - [Multiple Linear Regression](#multiple-linear-regression)
-  - [Logistic Regression Model](#logistic-regression-model)
+  - [Supervised Learning - Logistic Regression Model](#supervised-learning---logistic-regression-model)
     - [Binary Logistic Regression](#binary-logistic-regression)
       - [Dataset](#dataset-1)
       - [Model Fitting](#model-fitting)
       - [Model Predictions](#model-predictions)
       - [Model Evaluation](#model-evaluation-2)
-  - [Logistic Regression Pipelines](#logistic-regression-pipelines)
-    - [Dataset Preprocessing](#dataset-preprocessing)
+    - [Logistic Regression Pipelines](#logistic-regression-pipelines)
+      - [Dataset Preprocessing](#dataset-preprocessing)
     - [Pipeline](#pipeline)
-  - [Cross Validation](#cross-validation)
-    - [Train | Test Split](#train--test-split)
-      - [Dataset Preprocessing](#dataset-preprocessing-1)
-      - [Model Fitting](#model-fitting-1)
-      - [Model Evaluation](#model-evaluation-3)
-      - [Adjusting Hyper Parameter](#adjusting-hyper-parameter)
-    - [Train | Validation | Test Split](#train--validation--test-split)
-      - [Dataset Preprocessing](#dataset-preprocessing-2)
-      - [Model Fitting and Evaluation](#model-fitting-and-evaluation)
-      - [Adjusting Hyper Parameter](#adjusting-hyper-parameter-1)
-    - [k-fold Cross Validation](#k-fold-cross-validation)
-      - [Dataset Preprocessing](#dataset-preprocessing-3)
-      - [Model Scoring](#model-scoring)
-      - [Adjusting Hyper Parameter](#adjusting-hyper-parameter-2)
-      - [Model Fitting and Final Evaluation](#model-fitting-and-final-evaluation)
-    - [Cross Validate](#cross-validate)
-      - [Dataset (re-import)](#dataset-re-import)
-      - [Model Scoring](#model-scoring-1)
-      - [Adjusting Hyper Parameter](#adjusting-hyper-parameter-3)
-      - [Model Fitting and Final Evaluation](#model-fitting-and-final-evaluation-1)
-    - [Grid Search](#grid-search)
-      - [Hyperparameter Search](#hyperparameter-search)
-      - [Model Evaluation](#model-evaluation-4)
-  - [KNN Algorithm](#knn-algorithm)
+      - [Cross Validation](#cross-validation)
+        - [Train | Test Split](#train--test-split)
+        - [Model Fitting](#model-fitting-1)
+        - [Model Evaluation](#model-evaluation-3)
+        - [Adjusting Hyper Parameter](#adjusting-hyper-parameter)
+      - [Train | Validation | Test Split](#train--validation--test-split)
+        - [Model Fitting and Evaluation](#model-fitting-and-evaluation)
+        - [Adjusting Hyper Parameter](#adjusting-hyper-parameter-1)
+      - [k-fold Cross Validation](#k-fold-cross-validation)
+        - [Train-Test Split](#train-test-split)
+        - [Model Scoring](#model-scoring)
+        - [Adjusting Hyper Parameter](#adjusting-hyper-parameter-2)
+        - [Model Fitting and Final Evaluation](#model-fitting-and-final-evaluation)
+      - [Cross Validate](#cross-validate)
+        - [Dataset (re-import)](#dataset-re-import)
+        - [Model Scoring](#model-scoring-1)
+        - [Adjusting Hyper Parameter](#adjusting-hyper-parameter-3)
+        - [Model Fitting and Final Evaluation](#model-fitting-and-final-evaluation-1)
+      - [Grid Search](#grid-search)
+        - [Hyperparameter Search](#hyperparameter-search)
+        - [Model Evaluation](#model-evaluation-4)
+  - [Supervised Learning - KNN Algorithm](#supervised-learning---knn-algorithm)
     - [Dataset](#dataset-2)
     - [Data Pre-processing](#data-pre-processing-1)
     - [Model Fitting](#model-fitting-2)
-  - [Decision Tree Classifier](#decision-tree-classifier)
+  - [Supervised Learning - Decision Tree Classifier](#supervised-learning---decision-tree-classifier)
     - [Dataset](#dataset-3)
     - [Preprocessing](#preprocessing-1)
     - [Model Fitting](#model-fitting-3)
     - [Evaluation](#evaluation)
-  - [Random Forest Classifier](#random-forest-classifier)
+  - [Supervised Learning - Random Forest Classifier](#supervised-learning---random-forest-classifier)
     - [Dataset](#dataset-4)
     - [Preprocessing](#preprocessing-2)
     - [Model Fitting](#model-fitting-4)
     - [Evaluation](#evaluation-1)
-  - [Random Forest Hyperparameter Tuning](#random-forest-hyperparameter-tuning)
-    - [Testing Hyperparameters](#testing-hyperparameters)
-    - [Grid-Search Cross-Validation](#grid-search-cross-validation)
+    - [Random Forest Hyperparameter Tuning](#random-forest-hyperparameter-tuning)
+      - [Testing Hyperparameters](#testing-hyperparameters)
+      - [Grid-Search Cross-Validation](#grid-search-cross-validation)
     - [Random Forest Classifier 1 - Penguins](#random-forest-classifier-1---penguins)
       - [Feature Importance](#feature-importance)
       - [Model Evaluation](#model-evaluation-5)
@@ -91,16 +89,16 @@
       - [Grid Search for Hyperparameters](#grid-search-for-hyperparameters-1)
       - [Model Training and Evaluation](#model-training-and-evaluation)
       - [Optimizations](#optimizations)
-  - [Random Forest Regressor](#random-forest-regressor)
-    - [vs Linear Regression](#vs-linear-regression)
-    - [vs Polynomial Regression](#vs-polynomial-regression)
-    - [vs KNeighbors Regression](#vs-kneighbors-regression)
-    - [vs Decision Tree Regression](#vs-decision-tree-regression)
-    - [vs Support Vector Regression](#vs-support-vector-regression)
-    - [vs Gradient Boosting Regression](#vs-gradient-boosting-regression)
-    - [vs Ada Boosting Regression](#vs-ada-boosting-regression)
-    - [Finally, Random Forrest Regression](#finally-random-forrest-regression)
-  - [SVC Model](#svc-model)
+    - [Random Forest Regressor](#random-forest-regressor)
+      - [vs Linear Regression](#vs-linear-regression)
+      - [vs Polynomial Regression](#vs-polynomial-regression)
+      - [vs KNeighbors Regression](#vs-kneighbors-regression)
+      - [vs Decision Tree Regression](#vs-decision-tree-regression)
+      - [vs Support Vector Regression](#vs-support-vector-regression)
+      - [vs Gradient Boosting Regression](#vs-gradient-boosting-regression)
+      - [vs Ada Boosting Regression](#vs-ada-boosting-regression)
+      - [Finally, Random Forrest Regression](#finally-random-forrest-regression)
+  - [Supervised Learning - SVC Model](#supervised-learning---svc-model)
     - [Dataset](#dataset-5)
       - [Preprocessing](#preprocessing-3)
       - [Model Training](#model-training-1)
@@ -117,7 +115,7 @@
     - [Example Task - Wine Fraud](#example-task---wine-fraud)
       - [Data Exploration](#data-exploration)
       - [Regression Model](#regression-model)
-  - [Boosting Methods](#boosting-methods)
+  - [Supervised Learning - Boosting Methods](#supervised-learning---boosting-methods)
     - [Dataset Exploration](#dataset-exploration)
     - [Adaptive Boosting](#adaptive-boosting)
       - [Feature Exploration](#feature-exploration)
@@ -125,16 +123,45 @@
     - [Gradient Boosting](#gradient-boosting)
       - [Gridsearch for best Hyperparameter](#gridsearch-for-best-hyperparameter)
       - [Feature Importance](#feature-importance-1)
+  - [Supervised Learning - Naive Bayes NLP](#supervised-learning---naive-bayes-nlp)
+    - [Feature Extraction](#feature-extraction)
+      - [CountVectorizer \& TfidfTransformer](#countvectorizer--tfidftransformer)
+      - [TfidfVectorizer](#tfidfvectorizer)
+      - [Dataset Exploration](#dataset-exploration-1)
+      - [Data Preprocessing](#data-preprocessing)
+      - [TFIDF Vectorizer](#tfidf-vectorizer)
+      - [Model Comparison](#model-comparison)
+      - [Model Deployment](#model-deployment)
+    - [Text Classification](#text-classification)
+      - [Data Exploration](#data-exploration-1)
+      - [Top 30 Features by Label](#top-30-features-by-label)
+      - [Data Preprocessing](#data-preprocessing-1)
+      - [Model Training](#model-training-2)
+  - [Unsupervised Learning - KMeans Clustering](#unsupervised-learning---kmeans-clustering)
+    - [Dataset Exploration](#dataset-exploration-2)
+    - [Dataset Preprocessing](#dataset-preprocessing-1)
+    - [Model Training](#model-training-3)
+    - [Choosing a K Value](#choosing-a-k-value)
+      - [Re-fitting the Model](#re-fitting-the-model)
+    - [Example 1 : Color Quantization](#example-1--color-quantization)
+    - [Example 2 : Country Clustering](#example-2--country-clustering)
+      - [Dataset Exploration](#dataset-exploration-3)
+      - [Dataset Preprocessing](#dataset-preprocessing-2)
+      - [Model Training](#model-training-4)
+      - [Model Evaluation](#model-evaluation-7)
+      - [Plotly Choropleth Map](#plotly-choropleth-map)
 
 <!-- /TOC -->
 
-
 ```python
 import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 import numpy as np
 import pandas as pd
+import plotly.express as px
 import seaborn as sns
 from sklearn import svm
+from sklearn.cluster import KMeans
 from sklearn.datasets import load_iris, load_wine, fetch_20newsgroups, fetch_openml
 from sklearn.impute import MissingIndicator, SimpleImputer
 from sklearn.ensemble import (
@@ -144,6 +171,11 @@ from sklearn.ensemble import (
     AdaBoostRegressor,
     GradientBoostingClassifier,
     AdaBoostClassifier
+)
+from sklearn.feature_extraction.text import (
+    CountVectorizer,
+    TfidfTransformer,
+    TfidfVectorizer
 )
 from sklearn.linear_model import (
     LinearRegression,
@@ -165,6 +197,7 @@ from sklearn.model_selection import (
     cross_val_score,
     cross_validate
 )
+from sklearn.naive_bayes import MultinomialNB
 from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.preprocessing import (
@@ -508,7 +541,7 @@ print(
 print(mice_ds.DESCR)
 ```
 
-## Regression Models
+## Supervised Learning - Regression Models
 
 ### Simple Linear Regression
 
@@ -533,9 +566,9 @@ print(iris_df.corr())
 | petal length (cm) | 0.871754 | -0.428440 | 1.000000 | 0.962865 |
 | petal width (cm) | 0.817941 | -0.366126 | 0.962865 | 1.000000 |
 
-![scikit-learn - Machine Learning in Python](./assets/Scikit_Learn_01.webp)
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_01.webp)
 
-![scikit-learn - Machine Learning in Python](./assets/Scikit_Learn_02.webp)
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_02.webp)
 
 
 #### Data Pre-processing
@@ -634,7 +667,7 @@ iris_df.plot(
 )
 ```
 
-![scikit-learn - Machine Learning in Python](./assets/Scikit_Learn_03.webp)
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_03.webp)
 
 
 #### Model Evaluation
@@ -907,7 +940,7 @@ iris_df.plot(
 )
 ```
 
-![scikit-learn - Machine Learning in Python](./assets/Scikit_Learn_04.webp)
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_04.webp)
 
 ```python
 mae_multi = mean_absolute_error(
@@ -934,7 +967,7 @@ The accuracy of the model was improved by adding an additional, correlating valu
 | Root Mean Squared Error | 0.20239092189149646 | 0.2051637070118708 |
 
 
-## Logistic Regression Model
+## Supervised Learning - Logistic Regression Model
 
 ### Binary Logistic Regression
 
@@ -1013,9 +1046,9 @@ print(report)
 | weighted avg | 0.40 | 0.40 | 0.40 |  10  |
 
 
-## Logistic Regression Pipelines
+### Logistic Regression Pipelines
 
-### Dataset Preprocessing
+#### Dataset Preprocessing
 
 ```python
 iris_ds = load_iris()
@@ -1048,11 +1081,9 @@ print('Prediction Accuracy: ', iris_score.round(4)*100, '%')
 # Prediction Accuracy:  96.67 %
 ```
 
-## Cross Validation
+#### Cross Validation
 
-### Train | Test Split
-
-#### Dataset Preprocessing
+##### Train | Test Split
 
 ```python
 !wget https://raw.githubusercontent.com/reisanar/datasets/master/Advertising.csv -P datasets
@@ -1096,7 +1127,7 @@ X_adv_train = scaler_adv.transform(X_adv_train)
 X_adv_test = scaler_adv.transform(X_adv_test)
 ```
 
-#### Model Fitting
+##### Model Fitting
 
 ```python
 model_adv1 = Ridge(
@@ -1106,7 +1137,7 @@ model_adv1 = Ridge(
 model_adv1.fit(X_adv_train, y_adv_train)
 ```
 
-#### Model Evaluation
+##### Model Evaluation
 
 ```python
 y_adv_pred = model_adv1.predict(X_adv_test)
@@ -1115,7 +1146,7 @@ mean_squared_error(y_adv_test, y_adv_pred)
 # 6.528575771818745
 ```
 
-#### Adjusting Hyper Parameter
+##### Adjusting Hyper Parameter
 
 ```python
 model_adv2 = Ridge(
@@ -1131,9 +1162,7 @@ mean_squared_error(y_adv_test, y_adv_pred2)
 # 2.3319016551123535
 ```
 
-### Train | Validation | Test Split
-
-#### Dataset Preprocessing
+#### Train | Validation | Test Split
 
 ```python
 # 70:30 train/temp split
@@ -1160,7 +1189,7 @@ X_adv_test = scaler_adv.transform(X_adv_test)
 X_adv_val = scaler_adv.transform(X_adv_val)
 ```
 
-#### Model Fitting and Evaluation
+##### Model Fitting and Evaluation
 
 ```python
 model_adv3 = Ridge(
@@ -1177,7 +1206,7 @@ mean_squared_error(y_adv_val, y_adv_pred3)
 # 7.136230975501291
 ```
 
-#### Adjusting Hyper Parameter
+##### Adjusting Hyper Parameter
 
 ```python
 model_adv4 = Ridge(
@@ -1199,11 +1228,11 @@ mean_squared_error(y_adv_test, y_adv4_final_pred)
 # 2.024422922812264
 ```
 
-### k-fold Cross Validation
+#### k-fold Cross Validation
 
 Do a train/test split and segment the training set by k-folds (e.g. 5-10) and use each of those segments once to validate a training step. The resulting error is the average of all k errors.
 
-#### Dataset Preprocessing
+##### Train-Test Split
 
 ```python
 # 70:30 train/temp split
@@ -1221,7 +1250,7 @@ X_adv_train = scaler_adv.transform(X_adv_train)
 X_adv_test = scaler_adv.transform(X_adv_test)
 ```
 
-#### Model Scoring
+##### Model Scoring
 
 ```python
 model_adv5 = Ridge(
@@ -1244,7 +1273,7 @@ abs(scores.mean())
 # 8.688107513529168
 ```
 
-#### Adjusting Hyper Parameter
+##### Adjusting Hyper Parameter
 
 ```python
 model_adv6 = Ridge(
@@ -1267,7 +1296,7 @@ abs(scores.mean())
 # 3.3419582340688576
 ```
 
-#### Model Fitting and Final Evaluation
+##### Model Fitting and Final Evaluation
 
 ```python
 model_adv6.fit(X_adv_train, y_adv_train)
@@ -1277,10 +1306,10 @@ mean_squared_error(y_adv_test, y_adv6_final_pred)
 # 2.3319016551123535
 ```
 
-### Cross Validate
+#### Cross Validate
 
 
-#### Dataset (re-import)
+##### Dataset (re-import)
 
 ```python
 adv_df = pd.read_csv('datasets/Advertising.csv')
@@ -1304,7 +1333,7 @@ X_adv_train = scaler_adv.transform(X_adv_train)
 X_adv_test = scaler_adv.transform(X_adv_test)
 ```
 
-#### Model Scoring
+##### Model Scoring
 
 ```python
 model_adv7 = Ridge(
@@ -1356,7 +1385,7 @@ abs(scores_df.mean())
 _dtype: float64_
 
 
-#### Adjusting Hyper Parameter
+##### Adjusting Hyper Parameter
 
 ```python
 model_adv8 = Ridge(
@@ -1388,7 +1417,7 @@ abs(pd.DataFrame(scores).mean())
 _dtype: float64_
 
 
-#### Model Fitting and Final Evaluation
+##### Model Fitting and Final Evaluation
 
 ```python
 model_adv8.fit(X_adv_train, y_adv_train)
@@ -1398,12 +1427,12 @@ mean_squared_error(y_adv_test, y_adv8_final_pred)
 # 2.3319016551123535
 ```
 
-### Grid Search
+#### Grid Search
 
 Loop through a set of hyperparameters to find an optimum.
 
 
-#### Hyperparameter Search
+##### Hyperparameter Search
 
 ```python
 base_elastic_net_model = ElasticNet()
@@ -1522,7 +1551,7 @@ gridcv_results[
 ![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_10.webp)
 
 
-#### Model Evaluation
+##### Model Evaluation
 
 ```python
 y_grid_pred = grid_model.predict(X_adv_test)
@@ -1531,7 +1560,7 @@ mean_squared_error(y_adv_test, y_grid_pred)
 # 2.380865536033581
 ```
 
-## KNN Algorithm
+## Supervised Learning - KNN Algorithm
 
 ### Dataset
 
@@ -1632,7 +1661,7 @@ print('Accuracy Score: ', (accuracy_score(y_test_wine, y_pred_wine_knn7)*100).ro
 # Accuracy Score:  96.3 %
 ```
 
-## Decision Tree Classifier
+## Supervised Learning - Decision Tree Classifier
 
 * Does not require normalization
 * Is not sensitive to missing values
@@ -1717,7 +1746,7 @@ print(report_bill)
 | weighted avg | 0.98 | 0.98 | 0.98 |  275  |
 
 
-## Random Forest Classifier
+## Supervised Learning - Random Forest Classifier
 
 * Does not require normalization
 * Is not sensitive to missing values
@@ -1812,10 +1841,10 @@ print(report_heart)
 | weighted avg | 0.87 | 0.87 | 0.87 |  61  |
 
 
-## Random Forest Hyperparameter Tuning
+### Random Forest Hyperparameter Tuning
 
 
-### Testing Hyperparameters
+#### Testing Hyperparameters
 
 ```python
 rdnfor_classifier = RandomForestClassifier(
@@ -1834,7 +1863,7 @@ print('Accuracy Score: ', accuracy_score(y_test_heart, rdnfor_pred).round(4)*100
 # Accuracy Score:  73.77 %
 ```
 
-### Grid-Search Cross-Validation
+#### Grid-Search Cross-Validation
 
 Try a set of values for selected Hyperparameter to find the optimal configuration.
 
@@ -2148,7 +2177,7 @@ plt.plot(range(1,200), missclassifications)
 ![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_32.webp)
 
 
-## Random Forest Regressor
+### Random Forest Regressor
 
 Comparing different regression models to a random forrest regression model.
 
@@ -2201,7 +2230,7 @@ X_rock_train_scaled = scaler.fit_transform(X_rock_train)
 X_rock_test_scaled = scaler.transform(X_rock_test)
 ```
 
-### vs Linear Regression
+#### vs Linear Regression
 
 ```python
 lr_rock = LinearRegression()
@@ -2234,7 +2263,7 @@ plt.show()
 ![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_34.webp)
 
 
-### vs Polynomial Regression
+#### vs Polynomial Regression
 
 ```python
 # helper function
@@ -2305,7 +2334,7 @@ run_model(
 ![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_36.webp)
 
 
-### vs KNeighbors Regression
+#### vs KNeighbors Regression
 
 ```python
 # build polynomial model
@@ -2350,7 +2379,7 @@ for k in k_values:
 ![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_40.webp)
 
 
-### vs Decision Tree Regression
+#### vs Decision Tree Regression
 
 ```python
 tree_model = DecisionTreeRegressor()
@@ -2371,7 +2400,7 @@ run_model(
 ![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_41.webp)
 
 
-### vs Support Vector Regression
+#### vs Support Vector Regression
 
 ```python
 svr_rock = svm.SVR()
@@ -2401,7 +2430,7 @@ run_model(
 ![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_42.webp)
 
 
-### vs Gradient Boosting Regression
+#### vs Gradient Boosting Regression
 
 ```python
 gbr_rock = GradientBoostingRegressor()
@@ -2422,7 +2451,7 @@ run_model(
 ![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_44.webp)
 
 
-### vs Ada Boosting Regression
+#### vs Ada Boosting Regression
 
 ```python
 abr_rock = AdaBoostRegressor()
@@ -2443,7 +2472,7 @@ run_model(
 ![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_45.webp)
 
 
-### Finally, Random Forrest Regression
+#### Finally, Random Forrest Regression
 
 ```python
 rfr_rock = RandomForestRegressor(n_estimators=10)
@@ -2464,7 +2493,7 @@ run_model(
 ![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_43.webp)
 
 <!-- #region -->
-## SVC Model
+## Supervised Learning - SVC Model
 
 __Support Vector Machines__ (`SVM`s) are a set of supervised learning methods used for classification, regression and outliers detection.
 
@@ -3183,7 +3212,7 @@ conf_mtx_wine_plot.plot(cmap='plasma')
 ![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_26.webp)
 <!-- #endregion -->
 
-## Boosting Methods
+## Supervised Learning - Boosting Methods
 
 ```python
 # dataset - label mushrooms as poisonous or eatable
@@ -3653,3 +3682,1507 @@ sns.barplot(
 ![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_55.webp)
 
 
+## Supervised Learning - Naive Bayes NLP
+
+### Feature Extraction
+
+```python
+text = [
+    'This is a dataset for binary sentiment classification',
+    'containing substantially more data than previous benchmark datasets',
+    'We provide a set of 25,000 highly polar movie reviews for training',
+    'And 25,000 for testing',
+    'There is additional unlabeled data for use as well',
+    'Raw text and already processed bag of words formats are provided'
+]
+```
+
+#### CountVectorizer & TfidfTransformer
+
+```python
+cv = CountVectorizer(stop_words='english')
+cv_sparse_matrix = cv.fit_transform(text)
+# <6x30 sparse matrix of type '<class 'numpy.int64'>'
+# 	with 33 stored elements in Compressed Sparse Row format>
+```
+
+```python
+print(cv_sparse_matrix.todense())
+# [[0 0 0 0 0 1 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0]
+#  [0 0 0 0 1 0 0 1 1 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0]
+#  [1 1 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 1 0 0 1 0 1 0 0 0 1 0 0 0]
+#  [1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0]
+#  [0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0]
+#  [0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 1 0 1 1 0 0 0 0 0 1 0 0 0 1]]
+```
+
+```python
+print(cv.vocabulary_)
+# {'dataset': 9, 'binary': 5, 'sentiment': 21, 'classification': 6, 'containing': 7, 'substantially': 23, 'data': 8, 'previous': 15, 'benchmark': 4, 'datasets': 10, 'provide': 17, 'set': 22, '25': 1, '000': 0, 'highly': 12, 'polar': 14, 'movie': 13, 'reviews': 20, 'training': 26, 'testing': 24, 'additional': 2, 'unlabeled': 27, 'use': 28, 'raw': 19, 'text': 25, 'processed': 16, 'bag': 3, 'words': 29, 'formats': 11, 'provided': 18}
+```
+
+```python
+tfidf_trans = TfidfTransformer()
+tfidf_trans_results = tfidf_trans.fit_transform(cv_sparse_matrix)
+```
+
+```python
+print(tfidf_trans_results.todense())
+# [[0.         0.         0.         0.         0.         0.5
+#   0.5        0.         0.         0.5        0.         0.
+#   0.         0.         0.         0.         0.         0.
+#   0.         0.         0.         0.5        0.         0.
+#   0.         0.         0.         0.         0.         0.        ]
+#  [0.         0.         0.         0.         0.4198708  0.
+#   0.         0.4198708  0.34430007 0.         0.4198708  0.
+#   0.         0.         0.         0.4198708  0.         0.
+#   0.         0.         0.         0.         0.         0.4198708
+#   0.         0.         0.         0.         0.         0.        ]
+#  [0.28386526 0.28386526 0.         0.         0.         0.
+#   0.         0.         0.         0.         0.         0.
+#   0.3461711  0.3461711  0.3461711  0.         0.         0.3461711
+#   0.         0.         0.3461711  0.         0.3461711  0.
+#   0.         0.         0.3461711  0.         0.         0.        ]
+#  [0.5355058  0.5355058  0.         0.         0.         0.
+#   0.         0.         0.         0.         0.         0.
+#   0.         0.         0.         0.         0.         0.
+#   0.         0.         0.         0.         0.         0.
+#   0.65304446 0.         0.         0.         0.         0.        ]
+#  [0.         0.         0.52182349 0.         0.         0.
+#   0.         0.         0.42790272 0.         0.         0.
+#   0.         0.         0.         0.         0.         0.
+#   0.         0.         0.         0.         0.         0.
+#   0.         0.         0.         0.52182349 0.52182349 0.        ]
+#  [0.         0.         0.         0.37796447 0.         0.
+#   0.         0.         0.         0.         0.         0.37796447
+#   0.         0.         0.         0.         0.37796447 0.
+#   0.37796447 0.37796447 0.         0.         0.         0.
+#   0.         0.37796447 0.         0.         0.         0.37796447]]
+```
+
+#### TfidfVectorizer
+
+```python
+tfidf_vec = TfidfVectorizer(
+    lowercase=True,
+    analyzer='word',
+    stop_words='english'
+)
+
+tfidf_vec_results = tfidf_vec.fit_transform(text)
+# <6x30 sparse matrix of type '<class 'numpy.float64'>'
+# 	with 33 stored elements in Compressed Sparse Row format>
+```
+
+```python
+print(tfidf_trans_results == tfidf_vec_results)
+# True
+```
+
+#### Dataset Exploration
+
+```python
+!wget https://raw.githubusercontent.com/kunal-lalwani/Twitter-US-Airlines-Sentiment-Analysis/master/Tweets.csv -P datasets
+```
+
+```python
+tweet_df = pd.read_csv('datasets/Tweets.csv')
+tweet_df.head(3).transpose()
+```
+
+|  | 0 | 1 | 2 |
+| -- | -- | -- | -- |
+| tweet_id | 570306133677760513 | 570301130888122368 | 570301083672813571 |
+| airline_sentiment | neutral | positive | neutral |
+| airline_sentiment_confidence | 1.0 | 0.3486 | 0.6837 |
+| negativereason | NaN | NaN | NaN |
+| negativereason_confidence | NaN | 0.0 | NaN |
+| airline | Virgin America | Virgin America | Virgin America |
+| airline_sentiment_gold | NaN | NaN | NaN |
+| name | cairdin | jnardino | yvonnalynn |
+| negativereason_gold | NaN | NaN | NaN |
+| retweet_count | 0 | 0 | 0 |
+| text | @VirginAmerica What @dhepburn said. | @VirginAmerica plus you've added commercials t... | @VirginAmerica I didn't today... Must mean I n... |
+| tweet_coord | NaN | NaN | NaN |
+| tweet_created | 2015-02-24 11:35:52 -0800 | 2015-02-24 11:15:59 -0800 | 2015-02-24 11:15:48 -0800 |
+| tweet_location | NaN | NaN | Lets Play |
+| user_timezone | Eastern Time (US & Canada) | Pacific Time (US & Canada) | Central Time (US & Canada) |
+
+```python
+plt.figure(figsize=(12,5))
+plt.title('Tweet Sentiment Classification by Airline')
+sns.countplot(
+    data=tweet_df,
+    x='airline',
+    hue='airline_sentiment',
+    palette='cool'
+)
+
+plt.savefig('assets/Scikit_Learn_56.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_56.webp)
+
+```python
+plt.figure(figsize=(12,6))
+plt.title('Tweet Sentiment Classification with negative Reason')
+sns.countplot(
+    data=tweet_df,
+    x='airline',
+    hue='negativereason',
+    palette='cool'
+)
+
+plt.savefig('assets/Scikit_Learn_57.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_57.webp)
+
+
+#### Data Preprocessing
+
+```python
+tweet_data = tweet_df[['airline_sentiment', 'text']]
+```
+
+```python
+X_tweet = tweet_data['text']
+y_tweet = tweet_data['airline_sentiment']
+```
+
+```python
+# train/ test split
+X_tweet_train, X_tweet_test, y_tweet_train, y_tweet_test = train_test_split(
+    X_tweet,
+    y_tweet,
+    test_size=0.2,
+    random_state=42
+)
+```
+
+#### TFIDF Vectorizer
+
+```python
+tfidf_tweet_vec = TfidfVectorizer(
+    lowercase=True,
+    analyzer='word',
+    stop_words='english'
+)
+
+X_tweet_tfidf_train = tfidf_tweet_vec.fit_transform(X_tweet_train)
+# <11712x12987 sparse matrix of type '<class 'numpy.float64'>'
+# 	with 106745 stored elements in Compressed Sparse Row format>
+X_tweet_tfidf_test = tfidf_tweet_vec.transform(X_tweet_test)
+```
+
+#### Model Comparison
+
+```python
+# report helper function
+def report(model):
+    preds = model.predict(X_tweet_tfidf_test)
+    
+    print(classification_report(y_tweet_test, preds))
+    
+    conf_mtx = confusion_matrix(y_tweet_test, preds)
+    conf_mtx_plot = ConfusionMatrixDisplay(
+        confusion_matrix=conf_mtx
+    )
+    conf_mtx_plot.plot(cmap='plasma')
+```
+
+```python
+logreg_tweet = LogisticRegression(max_iter=1000)
+logreg_tweet.fit(X_tweet_tfidf_train, y_tweet_train)
+```
+
+```python
+report(logreg_tweet)
+```
+
+|           |  precision  |  recall | f1-score |  support |
+|     --  | -- | -- | -- | -- |
+|     negative | 0.82 | 0.93 | 0.88 | 1889 |
+|      neutral | 0.66 | 0.48 | 0.56 | 580 |
+|     positive | 0.79 | 0.63 | 0.70 | 459 |
+|     accuracy |      |      |  0.80 | 2928 |
+|    macro avg | 0.76 | 0.68 | 0.71  | 2928 |
+| weighted avg | 0.79 | 0.80 | 0.78  | 2928 |
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_58.webp)
+
+```python
+rbf_svc_tweet = svm.SVC()
+rbf_svc_tweet.fit(X_tweet_tfidf_train, y_tweet_train)
+```
+
+```python
+report(rbf_svc_tweet)
+```
+
+<!-- #region -->
+|           |  precision  |  recall | f1-score |  support |
+|     --  | -- | -- | -- | -- |
+|     negative | 0.81 | 0.95 | 0.87 | 1889 |
+|      neutral | 0.68 | 0.42 | 0.52 | 580 |
+|     positive | 0.80 | 0.61 | 0.69 | 459 |
+|     accuracy |      |      |  0.79 | 2928 |
+|    macro avg | 0.76 | 0.66 | 0.69  | 2928 |
+| weighted avg | 0.78 | 0.79 | 0.77  | 2928 |
+
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_59.webp)
+<!-- #endregion -->
+
+```python
+linear_svc_tweet = svm.LinearSVC()
+linear_svc_tweet.fit(X_tweet_tfidf_train, y_tweet_train)
+```
+
+```python
+report(linear_svc_tweet)
+```
+
+<!-- #region -->
+|           |  precision  |  recall | f1-score |  support |
+|     --  | -- | -- | -- | -- |
+|     negative | 0.85 | 0.91 | 0.88 | 1889 |
+|      neutral | 0.64 | 0.54 | 0.58 | 580 |
+|     positive | 0.76 | 0.67 | 0.71 | 459 |
+|     accuracy |      |      |  0.80 | 2928 |
+|    macro avg | 0.75 | 0.71 | 0.72  | 2928 |
+| weighted avg | 0.79 | 0.80 | 0.79  | 2928 |
+
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_60.webp)
+<!-- #endregion -->
+
+```python
+nb_tweets = MultinomialNB()
+nb_tweets.fit(X_tweet_tfidf_train, y_tweet_train)
+```
+
+```python
+report(nb_tweets)
+# The Naive Bayes classifies almost all tweets as negative
+# which means it does well with searching neg tweets
+# but ends up classifying a lot neutral and pos tweets as neg
+```
+
+|           |  precision  |  recall | f1-score |  support |
+|     --  | -- | -- | -- | -- |
+|     negative | 0.69 | 0.99 | 0.81 | 1889 |
+|      neutral | 0.75 | 0.15 | 0.25 | 580 |
+|     positive | 0.94 | 0.18 | 0.31 | 459 |
+|     accuracy |      |      |  0.70 | 2928 |
+|    macro avg | 0.79 | 0.44 | 0.46  | 2928 |
+| weighted avg | 0.74 | 0.70 | 0.62  | 2928 |
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_61.webp)
+
+
+#### Model Deployment
+
+```python
+# building a pipeline to ingest new tweets with the best performing model
+pipe = Pipeline(
+    [
+        ('tfidf', TfidfVectorizer()),
+        ('svc', svm.SVC())
+    ]
+)
+```
+
+```python
+# before deployment retrain on entire dataset
+pipe.fit(X_tweet, y_tweet)
+```
+
+```python
+# test prediction
+print(pipe.predict([
+    'good flight',
+    'terrible service',
+    'too late',
+    'ok flight',
+    'Thank you'
+]))
+# ['positive' 'negative' 'negative' 'neutral' 'positive']
+```
+
+### Text Classification
+IMDB Dataset of 50K Movie Reviews
+https://ai.stanford.edu/~amaas/data/sentiment/
+
+#### Data Exploration
+
+```python
+imdb_df = pd.read_csv('datasets/moviereviews.csv')
+imdb_df.head()
+```
+
+| 	| label | review |
+| -- | -- | -- |
+| 0 | neg | how do films like mouse hunt get into theatres... |
+| 1 | neg | some talented actresses are blessed with a dem... |
+| 2 | pos | this has been an extraordinary year for austra... |
+| 3 | pos | according to hollywood movies made in last few... |
+| 4 | neg | my first press screening of 1998 and already i... |
+
+```python
+imdb_df.info()
+
+# <class 'pandas.core.frame.DataFrame'>
+# RangeIndex: 2000 entries, 0 to 1999
+# Data columns (total 2 columns):
+#  #   Column  Non-Null Count  Dtype 
+# ---  ------  --------------  ----- 
+#  0   label   2000 non-null   object
+#  1   review  1965 non-null   object
+# dtypes: object(2)
+# memory usage: 31.4+ KB
+```
+
+```python
+# find missing
+imdb_df.isnull().sum()
+# label      0
+# review    35
+# dtype: int64
+```
+
+```python
+# drop missing
+imdb_df = imdb_df.dropna(axis=0)
+imdb_df.isnull().sum()
+# label     0
+# review    0
+# dtype: int64
+```
+
+```python
+# make sure there a no empty string reviews
+# (imdb_df['review'] == '  ').sum()
+imdb_df['review'].str.isspace().sum()
+# 27
+```
+
+```python
+# remove empty string reviews
+imdb_df = imdb_df[~imdb_df['review'].str.isspace()]
+imdb_df = imdb_df[imdb_df['review'] != '']
+```
+
+```python
+imdb_df['review'].str.isspace().sum()
+# 0
+```
+
+```python
+# is the dataset balanced
+imdb_df['label'].value_counts()
+# neg    969
+# pos    969
+# Name: label, dtype: int64
+```
+
+#### Top 30 Features by Label
+
+```python
+# find top 20 words in negative reviews
+imdb_neg_df = imdb_df[imdb_df['label'] == 'neg']
+
+count_vectorizer = CountVectorizer(analyzer='word', stop_words='english')
+bag_of_words = count_vectorizer.fit_transform(imdb_neg_df['review'])
+sum_words = bag_of_words.sum(axis=0)
+```
+
+```python
+words_freq = [
+    (word, sum_words[0, idx]) for word, idx in count_vectorizer.vocabulary_.items()
+]
+
+words_freq =sorted(words_freq, key = lambda x: x[1], reverse=True)
+```
+
+```python
+x, y = zip(*words_freq[:30])
+
+plt.figure(figsize=(12,5))
+plt.bar(x,y)
+plt.xticks(rotation=90)
+plt.title('Top30 Words used in Negative Reviews')
+
+plt.savefig('assets/Scikit_Learn_62.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_62.webp)
+
+```python
+# find top 20 words in positive reviews
+imdb_pos_df = imdb_df[imdb_df['label'] != 'neg']
+
+count_vectorizer = CountVectorizer(analyzer='word', stop_words='english')
+bag_of_words = count_vectorizer.fit_transform(imdb_pos_df['review'])
+sum_words = bag_of_words.sum(axis=0)
+```
+
+```python
+words_freq = [
+    (word, sum_words[0, idx]) for word, idx in count_vectorizer.vocabulary_.items()
+]
+
+words_freq =sorted(words_freq, key = lambda x: x[1], reverse=True)
+```
+
+```python
+x, y = zip(*words_freq[:30])
+
+plt.figure(figsize=(12,5))
+plt.bar(x,y)
+plt.xticks(rotation=90)
+plt.title('Top30 Words used in Positive Reviews')
+
+plt.savefig('assets/Scikit_Learn_63.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_63.webp)
+
+
+#### Data Preprocessing
+
+```python
+X_rev = imdb_df['review']
+y_rev = imdb_df['label']
+```
+
+```python
+# train/ test split
+X_rev_train, X_rev_test, y_rev_train, y_rev_test = train_test_split(
+    X_rev,
+    y_rev,
+    test_size=0.2,
+    random_state=42
+)
+```
+
+```python
+tfidf_rev_vec = TfidfVectorizer(
+    lowercase=True,
+    analyzer='word',
+    stop_words='english'
+)
+
+X_rev_tfidf_train = tfidf_rev_vec.fit_transform(X_rev_train)
+X_rev_tfidf_test = tfidf_rev_vec.transform(X_rev_test)
+```
+
+#### Model Training
+
+```python
+nb_rev = MultinomialNB()
+nb_rev.fit(X_rev_tfidf_train, y_rev_train)
+```
+
+```python
+preds = nb_rev.predict(X_rev_tfidf_test)
+print(classification_report(y_rev_test, preds))
+```
+
+|      | precision | recall | f1-score | support |
+|   -- | -- | -- | -- | -- |
+|      neg | 0.79 | 0.88 | 0.83 | 188 |
+|      pos | 0.87 | 0.78 | 0.82 | 200 |
+| accuracy |  |   |  0.82 | 388 | 
+| macro avg | 0.83 | 0.83 | 0.82 | 388 | 
+weighted avg | 0.83 | 0.82 | 0.82 | 388 |
+
+```python
+conf_mtx = confusion_matrix(y_rev_test, preds)
+conf_mtx_plot = ConfusionMatrixDisplay(
+     confusion_matrix=conf_mtx
+)
+conf_mtx_plot.plot(cmap='plasma')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_64.webp)
+
+
+## Unsupervised Learning - KMeans Clustering
+
+### Dataset Exploration
+
+```python
+!wget https://github.com/selva86/datasets/raw/master/bank-full.csv -P datasets
+```
+
+```python
+bank_df = pd.read_csv('datasets/bank-full.csv', sep=';')
+bank_df.head(5).transpose()
+```
+
+|  | 0 | 1 | 2 | 3 | 4 |
+| -- | -- | -- | -- | -- | -- |
+| age | 56 | 57 | 37 | 40 | 56 |
+| job | housemaid | services | services | admin. | services |
+| marital | married | married | married | married | married |
+| education | basic.4y | high.school | high.school | basic.6y | high.school |
+| default | no | unknown | no | no | no |
+| housing | no | no | yes | no | no |
+| loan | no | no | no | no | yes |
+| contact | telephone | telephone | telephone | telephone | telephone |
+| month | may | may | may | may | may |
+| day_of_week | mon | mon | mon | mon | mon |
+| duration | 261 | 149 | 226 | 151 | 307 |
+| campaign | 1 | 1 | 1 | 1 | 1 |
+| pdays | 999 | 999 | 999 | 999 | 999 |
+| previous | 0 | 0 | 0 | 0 | 0 |
+| poutcome | nonexistent | nonexistent | nonexistent | nonexistent | nonexistent |
+| emp.var.rate | 1.1 | 1.1 | 1.1 | 1.1 | 1.1 |
+| cons.price.idx | 93.994 | 93.994 | 93.994 | 93.994 | 93.994 |
+| cons.conf.idx | -36.4 | -36.4 | -36.4 | -36.4 | -36.4 |
+| euribor3m | 4.857 | 4.857 | 4.857 | 4.857 | 4.857 |
+| nr.employed | 5191.0 | 5191.0 | 5191.0 | 5191.0 | 5191.0 |
+| y | no | no | no | no | no |
+
+```python
+bank_df.describe()
+```
+
+|  | age | duration | campaign | pdays | previous | emp.var.rate | cons.price.idx | cons.conf.idx | euribor3m | nr.employed |
+| -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- |
+| count | 41188.00000 | 41188.000000 | 41188.000000 | 41188.000000 | 41188.000000 | 41188.000000 | 41188.000000 | 41188.000000 | 41188.000000 | 41188.000000 |
+| mean | 40.02406 | 258.285010 | 2.567593 | 962.475454 | 0.172963 | 0.081886 | 93.575664 | -40.502600 | 3.621291 | 5167.035911 |
+| std | 10.42125 | 259.279249 | 2.770014 | 186.910907 | 0.494901 | 1.570960 | 0.578840 | 4.628198 | 1.734447 | 72.251528 |
+| min | 17.00000 | 0.000000 | 1.000000 | 0.000000 | 0.000000 | -3.400000 | 92.201000 | -50.800000 | 0.634000 | 4963.600000 |
+| 25% | 32.00000 | 102.000000 | 1.000000 | 999.000000 | 0.000000 | -1.800000 | 93.075000 | -42.700000 | 1.344000 | 5099.100000 |
+| 50% | 38.00000 | 180.000000 | 2.000000 | 999.000000 | 0.000000 | 1.100000 | 93.749000 | -41.800000 | 4.857000 | 5191.000000 |
+| 75% | 47.00000 | 319.000000 | 3.000000 | 999.000000 | 0.000000 | 1.400000 | 93.994000 | -36.400000 | 4.961000 | 5228.100000 |
+| max | 98.00000 | 4918.000000 | 56.000000 | 999.000000 | 7.000000 | 1.400000 | 94.767000 | -26.900000 | 5.045000 | 5228.100000 |
+
+```python
+plt.figure(figsize=(12, 5))
+plt.title('Age Distribution by Marital Status')
+
+sns.histplot(
+    data=bank_df,
+    x='age',
+    bins=50,
+    hue='marital',
+    palette='winter',
+    kde=True
+)
+
+plt.savefig('assets/Scikit_Learn_65.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_65.webp)
+
+```python
+plt.figure(figsize=(12, 5))
+plt.title('Age Distribution by Loan Status')
+
+sns.histplot(
+    data=bank_df,
+    x='age',
+    bins=50,
+    hue='loan',
+    palette='winter',
+    kde=True
+)
+
+plt.savefig('assets/Scikit_Learn_66.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_66.webp)
+
+```python
+# remove columns with `pday`s = 999 (placeholder for never)
+plt.figure(figsize=(12, 5))
+plt.title('Distribution of Days Since Last Contacted by Loan Status')
+
+sns.histplot(
+    data=bank_df[bank_df['pdays'] != 999],
+    x='pdays',
+    hue='loan',
+    palette='winter',
+    kde=True
+)
+
+plt.savefig('assets/Scikit_Learn_67.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_67.webp)
+
+```python
+# Create call duration in minutes column
+bank_df['duration_minutes'] = bank_df['duration'].apply(lambda x: x/60).round(1)
+
+plt.figure(figsize=(12, 5))
+plt.title('Distribution Contact Duration by Contact Type')
+plt.xlim(0,20)
+sns.histplot(
+    data=bank_df,
+    x='duration_minutes',
+    hue='contact',
+    palette='winter',
+    kde=True
+)
+
+plt.savefig('assets/Scikit_Learn_68.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_68.webp)
+
+```python
+plt.figure(figsize=(16, 5))
+plt.title('Customer Jobs Countplot by Loan Defaults')
+sns.countplot(
+    data=bank_df,
+    x='job',
+    order=bank_df['job'].value_counts().index,
+    palette='winter',
+    hue='default'
+)
+
+plt.savefig('assets/Scikit_Learn_69.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_69.webp)
+
+```python
+plt.figure(figsize=(16, 5))
+plt.title('Customer Education Countplot by Loan Defaults')
+sns.countplot(
+    data=bank_df,
+    x='education',
+    order=bank_df['education'].value_counts().index,
+    palette='winter',
+    hue='default'
+)
+
+plt.savefig('assets/Scikit_Learn_70.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_70.webp)
+
+```python
+sns.pairplot(
+    data=bank_df,
+    hue='marital',
+    palette='winter'
+)
+
+plt.savefig('assets/Scikit_Learn_71.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_71.webp)
+
+
+### Dataset Preprocessing
+
+```python
+# encode categorical features
+X_bank = pd.get_dummies(bank_df)
+```
+
+```python
+# normalize data
+bank_scaler = StandardScaler()
+
+X_bank_scaled = bank_scaler.fit_transform(X_bank)
+```
+
+### Model Training
+
+```python
+bank_model = KMeans(
+    n_clusters=2,
+    n_init='auto',
+    random_state=42
+)
+# fit to find cluster centers and predict what center every feature belongs to
+bank_cluster_labels = bank_model.fit_predict(X_bank_scaled)
+```
+
+```python
+# add predicted label to source dataframe
+X_bank['Cluster'] = bank_cluster_labels
+```
+
+```python
+X_bank['Cluster'].value_counts()
+# 0    26871
+# 1    14317
+# Name: Cluster, dtype: int64
+```
+
+```python
+# How do the feature correlate with the predicted labels
+label_corr = X_bank.corr()['Cluster']
+print(label_corr.iloc[:-1].sort_values())
+```
+
+```python
+plt.figure(figsize=(10,14))
+label_corr.iloc[:-1].sort_values().plot(kind='barh')
+plt.title('Feature Importance')
+
+plt.savefig('assets/Scikit_Learn_72.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_72.webp)
+
+
+### Choosing a K Value
+
+```python
+# visualize the sum distance of your datapoints to the
+# predicted cluster centers as a function of number of clusters
+sum_squared_distance = []
+
+for k in range(2,20):
+    model = KMeans(n_clusters=k, n_init='auto')
+    model.fit(X_bank_scaled)
+    
+    sum_squared_distance.append(model.inertia_)
+```
+
+```python
+plt.figure(figsize=(10,5))
+plt.title('SSD as a Function of Number of Cluster')
+plt.plot(range(2,20), sum_squared_distance, 'o--')
+
+plt.savefig('assets/Scikit_Learn_73.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_73.webp)
+
+```python
+plt.figure(figsize=(10,5))
+plt.title('Difference in SSD as a Function of Number of Clusters')
+pd.Series(sum_squared_distance).diff().plot(kind='bar')
+
+plt.savefig('assets/Scikit_Learn_74.webp', bbox_inches='tight')
+```
+
+> There are two 'elbows' - one between k=5-6 (behold the 0-index in Pandas!) and the second one between k=14-15. Both of them are potential good values for the number of cluster `k`.
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_74.webp)
+
+
+#### Re-fitting the Model
+
+```python
+bank_model = KMeans(
+    n_clusters=6,
+    n_init='auto',
+    random_state=42
+)
+# fit to find cluster centers and predict what center every feature belongs to
+bank_cluster_labels = bank_model.fit_predict(X_bank_scaled)
+```
+
+```python
+# add predicted label to source dataframe
+X_bank['Cluster'] = bank_cluster_labels
+X_bank['Cluster'].value_counts()
+# 5    10713
+# 0    10663
+# 1     8164
+# 3     5566
+# 4     3322
+# 2     2760
+# Name: Cluster, dtype: int64
+```
+
+### Example 1 : Color Quantization
+
+```python
+img_array = mpimg.imread('assets/gz.jpg')
+img_array.shape
+# (325, 640, 3)
+```
+
+```python
+plt.imshow(img_array)
+plt.title('Original Image')
+plt.savefig('assets/Scikit_Learn_75.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_75.webp)
+
+```python
+# flatten the image from 3 to 2 dimensions
+(height, width, colour) = img_array.shape
+img_array2d = img_array.reshape(height*width,colour)
+img_array2d.shape
+# (208000, 3)
+```
+
+```python
+# reduce colour space to 6 clusters
+colour_model = KMeans(n_clusters=6, n_init='auto')
+colour_labels = colour_model.fit_predict(img_array2d)
+```
+
+```python
+# get rgb value for each of the 6 cluster centers
+rgb_colours = colour_model.cluster_centers_.round(0).astype(int)
+rgb_colours
+# array([[186, 111,  58],
+#        [ 31,  11,  16],
+#        [135,  72,  46],
+#        [236, 157,  73],
+#        [ 81,  40,  34],
+#        [252, 199, 125]])
+```
+
+```python
+# assign these rgb values to each pixel within the cluster
+# and reshape to original 3d array
+quantized_image = np.reshape(rgb_colours[colour_labels],(height,width,colour))
+```
+
+```python
+plt.imshow(quantized_image)
+plt.title('Quantized Image')
+plt.savefig('assets/Scikit_Learn_76.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_76.webp)
+
+
+### Example 2 : Country Clustering
+
+#### Dataset Exploration
+
+```python
+!wget https://github.com/priyansh21112002/CIA-Country-Description/raw/main/CIA_Country_Facts.csv -P datasets
+```
+
+```python
+country_df = pd.read_csv('datasets/CIA_Country_Facts.csv')
+country_df.head(5).transpose()
+```
+
+|  | 0 | 1 | 2 | 3 | 4 |
+| -- | -- | -- | -- | -- | -- |
+| Country | Afghanistan | Albania | Algeria | American Samoa | Andorra |
+| Region | ASIA (EX. NEAR EAST) | EASTERN EUROPE | NORTHERN AFRICA | OCEANIA | WESTERN EUROPE |
+| Population | 31056997 | 3581655 | 32930091 | 57794 | 71201 |
+| Area (sq. mi.) | 647500 | 28748 | 2381740 | 199 | 468 |
+| Pop. Density (per sq. mi.) | 48.0 | 124.6 | 13.8 | 290.4 | 152.1 |
+| Coastline (coast/area ratio) | 0.0 | 1.26 | 0.04 | 58.29 | 0.0 |
+| Net migration | 23.06 | -4.93 | -0.39 | -20.71 | 6.6 |
+| Infant mortality (per 1000 births) | 163.07 | 21.52 | 31.0 | 9.27 | 4.05 |
+| GDP ($ per capita) | 700.0 | 4500.0 | 6000.0 | 8000.0 | 19000.0 |
+| Literacy (%) | 36.0 | 86.5 | 70.0 | 97.0 | 100.0 |
+| Phones (per 1000) | 3.2 | 71.2 | 78.1 | 259.5 | 497.2 |
+| Arable (%) | 12.13 | 21.09 | 3.22 | 10.0 | 2.22 |
+| Crops (%) | 0.22 | 4.42 | 0.25 | 15.0 | 0.0 |
+| Other (%) | 87.65 | 74.49 | 96.53 | 75.0 | 97.78 |
+| Climate | 1.0 | 3.0 | 1.0 | 2.0 | 3.0 |
+| Birthrate | 46.6 | 15.11 | 17.14 | 22.46 | 8.71 |
+| Deathrate | 20.34 | 5.22 | 4.61 | 3.27 | 6.25 |
+| Agriculture | 0.38 | 0.232 | 0.101 | NaN | NaN |
+| Industry | 0.24 | 0.188 | 0.6 | NaN | NaN |
+| Service | 0.38 | 0.579 | 0.298 | NaN | NaN |
+
+```python
+fig, axes = plt.subplots(figsize=(10,5), nrows=1, ncols=2)
+plt.suptitle('Country Population Histogram')
+
+axes[0].set_xlabel('Population')
+axes[0].set_ylabel('Frequency')
+
+axes[0].hist(
+    x=country_df['Population'],
+    range=None,
+    density=True,
+    histtype='bar',
+    orientation='vertical',
+    color='dodgerblue'
+)
+
+axes[1].set_xlabel('Population (<100Mio)')
+axes[1].set_ylabel('Frequency')
+
+axes[1].hist(
+    x=country_df['Population'],
+    range=[0, 1e8],
+    density=True,
+    histtype='bar',
+    orientation='vertical',
+    color='fuchsia'
+)
+
+plt.savefig('assets/Scikit_Learn_77.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_77.webp)
+
+```python
+plt.figure(figsize=(12, 5))
+plt.title('GDP ($ per capita) by Region')
+
+sns.barplot(
+    data=country_df,
+    y='Region',
+    x='GDP ($ per capita)',
+    estimator=np.mean,
+    errorbar='sd',
+    orient='h',
+    palette='cool'
+)
+
+plt.savefig('assets/Scikit_Learn_78.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_78.webp)
+
+```python
+plt.figure(figsize=(10, 6))
+
+sns.scatterplot(
+    y='Phones (per 1000)',
+    x='GDP ($ per capita)',
+    data=country_df,
+    hue='Region',
+    palette='cool',
+).set_title('GDP ($ per capita) vs. Phones (per 1000)')
+
+plt.savefig('assets/Scikit_Learn_79.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_79.webp)
+
+```python
+plt.figure(figsize=(10, 6))
+
+sns.scatterplot(
+    y='Literacy (%)',
+    x='GDP ($ per capita)',
+    data=country_df,
+    hue='Region',
+    palette='cool',
+).set_title('GDP ($ per capita) vs. Literacy (%)')
+
+plt.savefig('assets/Scikit_Learn_80.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_80.webp)
+
+```python
+plt.figure(figsize=(20, 12), dpi=200)
+plt.title('Correlation Heatmap CIA Country Dataset')
+
+sns.heatmap(
+    country_df.corr(numeric_only=True),
+    linewidth=0.5,
+    cmap='seismic',
+    annot=True
+)
+
+plt.savefig('assets/Scikit_Learn_81.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_81.webp)
+
+```python
+plt.figure(figsize=(20, 12), dpi=200)
+sns.clustermap(
+    country_df.corr(numeric_only=True),
+    linewidth=0.5,
+    cmap='seismic',
+    annot=False,
+    col_cluster=False
+)
+
+plt.savefig('assets/Scikit_Learn_82.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_82.webp)
+
+
+#### Dataset Preprocessing
+
+```python
+# find columns with missing values
+country_df.isnull().sum()
+```
+
+|    |    |
+| -- | -- |
+| Country                            | 0 |
+| Region                             | 0 |
+| Population                         | 0 |
+| Area (sq. mi.)                     | 0 |
+| Pop. Density (per sq. mi.)         | 0 |
+| Coastline (coast/area ratio)       | 0 |
+| Net migration                      | 3 |
+| Infant mortality (per 1000 births) | 3 |
+| GDP ($ per capita)                 | 1 |
+| Literacy (%)                      | 18 |
+| Phones (per 1000)                  | 4 |
+| Arable (%)                         | 2 |
+| Crops (%)                          | 2 |
+| Other (%)                          | 2 |
+| Climate                           | 22 |
+| Birthrate                          | 3 |
+| Deathrate                          | 4 |
+| Agriculture                       | 15 |
+| Industry                          | 16 |
+| Service                           | 15 |
+_dtype: int64_
+
+```python
+# what countries don't have an agriculture value
+country_df[pd.isnull(country_df['Agriculture'])]['Country']
+# all countries without agriculture data will not have a
+# whole lot of agriculture output. The same is true for 'Industry'
+# and 'Service' These values can be set to zero:
+```
+
+|    |    |
+| -- | -- |
+| 3 | American Samoa |
+| 4 | Andorra |
+| 78 | Gibraltar |
+| 80 | Greenland |
+| 83 | Guam |
+| 134 | Mayotte |
+| 140 | Montserrat |
+| 144 | Nauru |
+| 153 | N. Mariana Islands |
+| 171 | Saint Helena |
+| 174 | St Pierre & Miquelon |
+| 177 | San Marino |
+| 208 | Turks & Caicos Is |
+| 221 | Wallis and Futuna |
+| 223 | Western Sahara |
+_Name: Country, dtype: object_
+
+```python
+# set missing values to zero for Agriculture, Industry and Service
+# define what default values you want to fill
+values = {
+    "Agriculture": 0,
+    "Industry": 0,
+    "Service": 0,
+}
+# and replace missing with values
+country_df = country_df.fillna(value=values)
+```
+
+```python
+# another datapoint that is often missing is climate
+# the climate can be estimated by countries in the same Region
+country_df[pd.isnull(country_df['Climate'])][['Country', 'Region', 'Climate']]
+```
+
+|  | Country | Region | Climate |
+| -- | -- | -- | -- |
+| 5 | Angola | SUB-SAHARAN AFRICA | NaN |
+| 36 | Canada | NORTHERN AMERICA | NaN |
+| 50 | Croatia | EASTERN EUROPE | NaN |
+| 66 | Faroe Islands | WESTERN EUROPE | NaN |
+| 78 | Gibraltar | WESTERN EUROPE | NaN |
+| 101 | Italy | WESTERN EUROPE | NaN |
+| 115 | Lebanon | NEAR EAST | NaN |
+| 118 | Libya | NORTHERN AFRICA | NaN |
+| 120 | Lithuania | BALTICS | NaN |
+| 121 | Luxembourg | WESTERN EUROPE | NaN |
+| 129 | Malta | WESTERN EUROPE | NaN |
+| 137 | Moldova | C.W. OF IND. STATES | NaN |
+| 138 | Monaco | WESTERN EUROPE | NaN |
+| 141 | Morocco | NORTHERN AFRICA | NaN |
+| 145 | Nepal | ASIA (EX. NEAR EAST) | NaN |
+| 169 | Russia | C.W. OF IND. STATES | NaN |
+| 171 | Saint Helena | SUB-SAHARAN AFRICA | NaN |
+| 174 | St Pierre & Miquelon | NORTHERN AMERICA | NaN |
+| 177 | San Marino | WESTERN EUROPE | NaN |
+| 181 | Serbia | EASTERN EUROPE | NaN |
+| 186 | Slovenia | EASTERN EUROPE | NaN |
+| 200 | Tanzania | SUB-SAHARAN AFRICA | NaN |
+
+```python
+country_df[pd.isnull(country_df['Climate'])]['Region'].value_counts()
+```
+
+|    |    |
+| -- | -- |
+| WESTERN EUROPE       | 7 |
+| SUB-SAHARAN AFRICA   | 3 |
+| EASTERN EUROPE       | 3 |
+| NORTHERN AMERICA     | 2 |
+| NORTHERN AFRICA      | 2 |
+| C.W. OF IND. STATES  | 2 |
+| NEAR EAST            | 1 |
+| BALTICS              | 1 |
+| ASIA (EX. NEAR EAST) | 1 |
+_Name: Region, dtype: int64_
+
+```python
+# the Region value has annoying whitespaces that need to be stripped
+country_df['Region'] = country_df['Region'].apply(lambda x: x.strip())
+```
+
+```python
+# climate zones in western europe
+country_df[country_df['Region'] == 'WESTERN EUROPE']['Climate'].value_counts()
+```
+
+```python
+# climate zones in SUB-SAHARAN AFRICA
+country_df[country_df['Region'] == 'SUB-SAHARAN AFRICA']['Climate'].value_counts()
+```
+
+```python
+# climate zones in EASTERN EUROPE
+country_df[country_df['Region'] == 'EASTERN EUROPE']['Climate'].value_counts()
+```
+
+```python
+# climate zones in NORTHERN AMERICA
+country_df[country_df['Region'] == 'NORTHERN AMERICA']['Climate'].value_counts()
+```
+
+```python
+# climate zones in NORTHERN AFRICA
+country_df[country_df['Region'] == 'NORTHERN AFRICA']['Climate'].value_counts()
+```
+
+```python
+# climate zones in C.W. OF IND. STATES
+country_df[country_df['Region'] == 'C.W. OF IND. STATES']['Climate'].value_counts()
+```
+
+```python
+# climate zones in NEAR EAST
+country_df[country_df['Region'] == 'NEAR EAST']['Climate'].value_counts()
+```
+
+```python
+# climate zones in BALTICS
+country_df[country_df['Region'] == 'BALTICS']['Climate'].value_counts()
+```
+
+```python
+# climate zones in ASIA (EX. NEAR EAST)
+country_df[country_df['Region'] == 'ASIA (EX. NEAR EAST)']['Climate'].value_counts()
+```
+
+```python
+# we can either use the top value to fill missing climate data points
+# or use a mean value:
+country_df['Climate'] = country_df['Climate'].fillna(country_df.groupby('Region')['Climate'].transform('mean'))
+```
+
+```python
+# there are more missing values, e.g. literacy:
+country_df[pd.isnull(country_df['Literacy (%)'])][['Country', 'Region', 'Literacy (%)']]
+```
+
+|  | Country | Region | Literacy (%) |
+| -- | -- | -- | -- |
+| 25 | Bosnia & Herzegovina | EASTERN EUROPE | NaN |
+| 66 | Faroe Islands | WESTERN EUROPE | NaN |
+| 74 | Gaza Strip | NEAR EAST | NaN |
+| 78 | Gibraltar | WESTERN EUROPE | NaN |
+| 80 | Greenland | NORTHERN AMERICA | NaN |
+| 85 | Guernsey | WESTERN EUROPE | NaN |
+| 99 | Isle of Man | WESTERN EUROPE | NaN |
+| 104 | Jersey | WESTERN EUROPE | NaN |
+| 108 | Kiribati | OCEANIA | NaN |
+| 123 | Macedonia | EASTERN EUROPE | NaN |
+| 134 | Mayotte | SUB-SAHARAN AFRICA | NaN |
+| 144 | Nauru | OCEANIA | NaN |
+| 185 | Slovakia | EASTERN EUROPE | NaN |
+| 187 | Solomon Islands | OCEANIA | NaN |
+| 209 | Tuvalu | OCEANIA | NaN |
+| 220 | Virgin Islands | LATIN AMER. & CARIB | NaN |
+| 222 | West Bank | NEAR EAST | NaN |
+| 223 | Western Sahara | NORTHERN AFRICA | NaN |
+
+```python
+# here we can also fill with mean values:
+country_df['Literacy (%)'] = country_df['Literacy (%)'].fillna(country_df.groupby('Region')['Literacy (%)'].transform('mean'))
+```
+
+```python
+# the remaining rows with missing values can be dropped for now
+country_df = country_df.dropna(axis=0)
+country_df.isnull().sum()
+```
+
+|    |    |
+| -- | -- |
+| Country                            | 0 |
+| Region                             | 0 |
+| Population                         | 0 |
+| Area (sq. mi.)                     | 0 |
+| Pop. Density (per sq. mi.)         | 0 |
+| Coastline (coast/area ratio)       | 0 |
+| Net migration                      | 0 |
+| Infant mortality (per 1000 births) | 0 |
+| GDP ($ per capita)                 | 0 |
+| Literacy (%)                       | 0 |
+| Phones (per 1000)                  | 0 |
+| Arable (%)                         | 0 |
+| Crops (%)                          | 0 |
+| Other (%)                          | 0 |
+| Climate                            | 0 |
+| Birthrate                          | 0 |
+| Deathrate                          | 0 |
+| Agriculture                        | 0 |
+| Industry                           | 0 |
+| Service                            | 0 |
+_dtype: int64_
+
+```python
+# drop the country column as it is a unique
+# classifier that will not help with clustering
+country_df_dropped = country_df.drop(['Country'], axis=1)
+```
+
+```python
+# the region column is useful but needs to be encoded
+country_df_dropped = pd.get_dummies(country_df_dropped)
+```
+
+```python
+country_df_dropped.head(5).transpose()
+```
+
+|  | 0 | 1 | 2 | 3 | 4 |
+| -- | -- | -- | -- | -- | -- |
+| Population | 31056997.00 | 3581655.000 | 3.293009e+07 | 57794.00 | 71201.00 |
+| Area (sq. mi.) | 647500.00 | 28748.000 | 2.381740e+06 | 199.00 | 468.00 |
+| Pop. Density (per sq. mi.) | 48.00 | 124.600 | 1.380000e+01 | 290.40 | 152.10 |
+| Coastline (coast/area ratio) | 0.00 | 1.260 | 4.000000e-02 | 58.29 | 0.00 |
+| Net migration | 23.06 | -4.930 | -3.900000e-01 | -20.71 | 6.60 |
+| Infant mortality (per 1000 births) | 163.07 | 21.520 | 3.100000e+01 | 9.27 | 4.05 |
+| GDP ($ per capita) | 700.00 | 4500.000 | 6.000000e+03 | 8000.00 | 19000.00 |
+| Literacy (%) | 36.00 | 86.500 | 7.000000e+01 | 97.00 | 100.00 |
+| Phones (per 1000) | 3.20 | 71.200 | 7.810000e+01 | 259.50 | 497.20 |
+| Arable (%) | 12.13 | 21.090 | 3.220000e+00 | 10.00 | 2.22 |
+| Crops (%) | 0.22 | 4.420 | 2.500000e-01 | 15.00 | 0.00 |
+| Other (%) | 87.65 | 74.490 | 9.653000e+01 | 75.00 | 97.78 |
+| Climate | 1.00 | 3.000 | 1.000000e+00 | 2.00 | 3.00 |
+| Birthrate | 46.60 | 15.110 | 1.714000e+01 | 22.46 | 8.71 |
+| Deathrate | 20.34 | 5.220 | 4.610000e+00 | 3.27 | 6.25 |
+| Agriculture | 0.38 | 0.232 | 1.010000e-01 | 0.00 | 0.00 |
+| Industry | 0.24 | 0.188 | 6.000000e-01 | 0.00 | 0.00 |
+| Service | 0.38 | 0.579 | 2.980000e-01 | 0.00 | 0.00 |
+| Region_ASIA (EX. NEAR EAST) | 1.00 | 0.000 | 0.000000e+00 | 0.00 | 0.00 |
+| Region_BALTICS | 0.00 | 0.000 | 0.000000e+00 | 0.00 | 0.00 |
+| Region_C.W. OF IND. STATES | 0.00 | 0.000 | 0.000000e+00 | 0.00 | 0.00 |
+| Region_EASTERN EUROPE | 0.00 | 1.000 | 0.000000e+00 | 0.00 | 0.00 |
+| Region_LATIN AMER. & CARIB | 0.00 | 0.000 | 0.000000e+00 | 0.00 | 0.00 |
+| Region_NEAR EAST | 0.00 | 0.000 | 0.000000e+00 | 0.00 | 0.00 |
+| Region_NORTHERN AFRICA | 0.00 | 0.000 | 1.000000e+00 | 0.00 | 0.00 |
+| Region_NORTHERN AMERICA | 0.00 | 0.000 | 0.000000e+00 | 0.00 | 0.00 |
+| Region_OCEANIA | 0.00 | 0.000 | 0.000000e+00 | 1.00 | 0.00 |
+| Region_SUB-SAHARAN AFRICA | 0.00 | 0.000 | 0.000000e+00 | 0.00 | 0.00 |
+| Region_WESTERN EUROPE | 0.00 | 0.000 | 0.000000e+00 | 0.00 | 1.00 |
+
+```python
+# to be able to compare all datapoints they need to be normalized
+country_scaler = StandardScaler()
+country_df_scaled = country_scaler.fit_transform(country_df_dropped)
+```
+
+#### Model Training
+
+```python
+# finding a good k-value for number of cluster
+ssd_country = []
+
+for k in range(2,30):
+    model = KMeans(n_clusters=k, n_init='auto')
+    model.fit(country_df_scaled)
+    
+    ssd_country.append(model.inertia_)
+```
+
+```python
+plt.figure(figsize=(10,5))
+plt.title('SSD as a Function of Number of Cluster')
+plt.plot(range(2,30), ssd_country, 'o--')
+
+plt.savefig('assets/Scikit_Learn_83.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_83.webp)
+
+```python
+plt.figure(figsize=(10,5))
+plt.title('Difference in SSD as a Function of Number of Clusters')
+pd.Series(ssd_country).diff().plot(kind='bar')
+
+plt.savefig('assets/Scikit_Learn_84.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_84.webp)
+
+```python
+country_model = KMeans(
+    n_clusters=14,
+    n_init='auto',
+    random_state=42
+)
+# fit to find cluster centers and predict what center every feature belongs to
+country_cluster_labels = country_model.fit_predict(country_df_scaled)
+```
+
+#### Model Evaluation
+
+```python
+# add predicted label to source dataframe
+country_df['Cluster14'] = country_cluster_labels
+country_df['Cluster14'].value_counts()
+```
+
+```python
+plt.figure(figsize=(10, 7))
+sns.set(style='darkgrid')
+
+# hue/style by categorical column
+sns.scatterplot(
+    x='GDP ($ per capita)',
+    y='Literacy (%)',
+    data=country_df,
+    s=40,
+    alpha=0.6,
+    hue='Cluster14',
+    palette='cool',
+    style='Region'
+).set_title('Country Clusters with k=14')
+
+plt.savefig('assets/Scikit_Learn_85.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_85.webp)
+
+```python
+# repeat but only with 3 cluster
+country_model2 = KMeans(
+    n_clusters=3,
+    n_init='auto',
+    random_state=42
+)
+# fit to find cluster centers and predict what center every feature belongs to
+country_cluster_labels2 = country_model2.fit_predict(country_df_scaled)
+
+# add predicted label to source dataframe
+country_df['Cluster3'] = country_cluster_labels2
+
+plt.figure(figsize=(10, 7))
+sns.set(style='darkgrid')
+
+# hue/style by categorical column
+sns.scatterplot(
+    x='GDP ($ per capita)',
+    y='Literacy (%)',
+    data=country_df,
+    s=40,
+    alpha=0.6,
+    hue='Cluster3',
+    palette='cool',
+    style='Region'
+).set_title('Country Clusters with k=3')
+
+plt.savefig('assets/Scikit_Learn_86.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_86.webp)
+
+```python
+# How do the feature correlate with the predicted labels
+country_label_corr = country_df.corr()['Cluster3']
+print(country_label_corr.iloc[:-1].sort_values())
+```
+
+__Feature Correlation__
+
+|    |    |
+| -- | -- |
+| Literacy (%)                       | -0.413704 |
+| Crops (%)                          | -0.152936 |
+| Coastline (coast/area ratio)       | -0.132610 |
+| Service                            | -0.070495 |
+| Area (sq. mi.)                     | -0.062183 |
+| Phones (per 1000)                  | -0.037538 |
+| Population                         | -0.024969 |
+| Industry                           |  0.008487 |
+| Arable (%)                         |  0.034891 |
+| Climate                            |  0.049659 |
+| Other (%)                          |  0.050444 |
+| Pop. Density (per sq. mi.)         |  0.101062 |
+| GDP ($ per capita)                 |  0.122206 |
+| Agriculture                        |  0.250750 |
+| Net migration                      |  0.316226 |
+| Birthrate                          |  0.369940 |
+| Infant mortality (per 1000 births) |  0.412365 |
+| Deathrate                          |  0.575814 |
+_Name: Cluster, dtype: float64_
+
+```python
+plt.figure(figsize=(10,6))
+country_label_corr.iloc[:-1].sort_values().plot(kind='barh')
+plt.title('Feature Importance')
+
+plt.savefig('assets/Scikit_Learn_87.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_87.webp)
+
+
+#### Plotly Choropleth Map
+
+```python
+iso_codes = pd.read_csv('datasets/country-iso-codes.csv')
+iso_map = iso_codes.set_index('Country')['ISO Code'].to_dict()
+```
+
+```python
+country_df['ISO Code'] = country_df['Country'].map(iso_map)
+country_df[['Country','ISO Code']].head(5)
+```
+
+|   | Country | ISO Code |
+| -- | -- | -- |
+| 0 | Afghanistan | AFG |
+| 1 | Albania | ALB |
+| 2 | Algeria | DZA |
+| 3 | American Samoa | ASM |
+| 4 | Andorra | AND |
+
+```python
+fig = px.choropleth(
+    country_df,
+    locations='ISO Code',
+    color='Cluster3',
+    hover_name='Country',
+    color_continuous_scale=px.colors.sequential.Plasma
+)
+
+fig.show()
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_88.webp)
+
+```python
+fig = px.choropleth(
+    country_df,
+    locations='ISO Code',
+    color='Cluster14',
+    hover_name='Country',
+    color_continuous_scale=px.colors.sequential.Plasma
+)
+
+fig.show()
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_89.webp)
