@@ -150,6 +150,11 @@
       - [Model Training](#model-training-4)
       - [Model Evaluation](#model-evaluation-7)
       - [Plotly Choropleth Map](#plotly-choropleth-map)
+  - [Unsupervised Learning - Agglomerative Clustering](#unsupervised-learning---agglomerative-clustering)
+    - [Dataset Preprocessing](#dataset-preprocessing-3)
+    - [Assigning Cluster Labels](#assigning-cluster-labels)
+      - [Known Number of Clusters](#known-number-of-clusters)
+      - [Unknown Number of Clusters](#unknown-number-of-clusters)
 
 <!-- /TOC -->
 
@@ -5186,3 +5191,308 @@ fig.show()
 ```
 
 ![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_89.webp)
+
+
+## Unsupervised Learning - Agglomerative Clustering
+
+### Dataset Preprocessing
+
+
+> [autompg_data: The Auto-MPG dataset for regression](https://archive.ics.uci.edu/dataset/9/auto+mpg)
+> Revised from CMU StatLib library, data concerns city-cycle fuel consumption
+
+```python
+autoMPG_df = pd.read_csv('datasets/auto-mpg.csv')
+autoMPG_df.head(5)
+```
+
+|   | mpg | cylinders | displacement | horsepower | weight | acceleration | model_year | origin | name |
+| --  | -- | -- | -- | -- | -- | -- | -- | -- | -- |
+| 0 | 18.0 | 8 | 307.0 | 130.0 | 3504 | 12.0 | 70 | usa | chevrolet chevelle malibu |
+| 1 | 15.0 | 8 | 350.0 | 165.0 | 3693 | 11.5 | 70 | usa | buick skylark 320 |
+| 2 | 18.0 | 8 | 318.0 | 150.0 | 3436 | 11.0 | 70 | usa | plymouth satellite |
+| 3 | 16.0 | 8 | 304.0 | 150.0 | 3433 | 12.0 | 70 | usa | amc rebel sst |
+| 4 | 17.0 | 8 | 302.0 | 140.0 | 3449 | 10.5 | 70 | usa | ford torino |
+
+```python
+autoMPG_df['origin'].value_counts()
+# there are only 3 countries of origin - can be turned into a dummy variable
+```
+
+```python
+autoMPG_dummy_df = pd.get_dummies(autoMPG_df.drop('name', axis=1))
+autoMPG_dummy_df.head(5)
+```
+
+|  | mpg | cylinders | displacement | horsepower | weight | acceleration | model_year | origin_europe | origin_japan | origin_usa |
+| --  | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- |
+| 0 | 18.0 | 8 | 307.0 | 130.0 | 3504 | 12.0 | 70 | False | False | True |
+| 1 | 15.0 | 8 | 350.0 | 165.0 | 3693 | 11.5 | 70 | False | False | True |
+| 2 | 18.0 | 8 | 318.0 | 150.0 | 3436 | 11.0 | 70 | False | False | True |
+| 3 | 16.0 | 8 | 304.0 | 150.0 | 3433 | 12.0 | 70 | False | False | True |
+| 4 | 17.0 | 8 | 302.0 | 140.0 | 3449 | 10.5 | 70 | False | False | True |
+
+```python
+# normalize dataset
+scaler = MinMaxScaler()
+autoMPG_scaled = pd.DataFrame(
+    scaler.fit_transform(autoMPG_dummy_df), columns=autoMPG_dummy_df.columns
+)
+autoMPG_scaled.describe()
+```
+
+|  | mpg | cylinders | displacement | horsepower | weight | acceleration | model_year | origin_europe | origin_japan | origin_usa |
+| --  | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- |
+| count | 392.000000 | 392.000000 | 392.000000 | 392.000000 | 392.000000 | 392.000000 | 392.000000 | 392.000000 | 392.000000 | 392.000000 |
+| mean | 0.384200 | 0.494388 | 0.326646 | 0.317768 | 0.386897 | 0.448888 | 0.498299 | 0.173469 | 0.201531 | 0.625000 |
+| std | 0.207580 | 0.341157 | 0.270398 | 0.209191 | 0.240829 | 0.164218 | 0.306978 | 0.379136 | 0.401656 | 0.484742 |
+| min | 0.000000 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | 0.000000 |
+| 25% | 0.212766 | 0.200000 | 0.095607 | 0.157609 | 0.173589 | 0.343750 | 0.250000 | 0.000000 | 0.000000 | 0.000000 |
+| 50% | 0.365691 | 0.200000 | 0.214470 | 0.258152 | 0.337539 | 0.446429 | 0.500000 | 0.000000 | 0.000000 | 1.000000 |
+| 75% | 0.531915 | 1.000000 | 0.536822 | 0.434783 | 0.567550 | 0.537202 | 0.750000 | 0.000000 | 0.000000 | 1.000000 |
+| max | 1.000000 | 1.000000 | 1.000000 | 1.000000 | 1.000000 | 1.000000 | 1.000000 | 1.000000 | 1.000000 | 1.000000 |
+
+```python
+plt.figure(figsize=(12,10))
+
+sns.heatmap(autoMPG_scaled, annot=False, cmap='viridis')
+
+plt.savefig('assets/Scikit_Learn_90.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_90.webp)
+
+```python
+sns.clustermap(
+    autoMPG_scaled.corr(numeric_only=True),
+    linewidth=0.5,
+    cmap='seismic',
+    annot=True,
+    col_cluster=False
+)
+
+plt.savefig('assets/Scikit_Learn_91.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_91.webp)
+
+
+### Assigning Cluster Labels
+
+#### Known Number of Clusters
+
+```python
+# there are ~ 4 clusters visible - let's try to agglomerate them
+autoMPG_model = AgglomerativeClustering(n_clusters=4)
+cluster_labels = autoMPG_model.fit_predict(autoMPG_scaled)
+autoMPG_df['label'] = cluster_labels
+autoMPG_df.head(5)
+```
+
+| | mpg | cylinders | displacement | horsepower | weight | acceleration | model_year | origin | name | label |
+| --  | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- |
+| 0 | 18.0 | 8 | 307.0 | 130.0 | 3504 | 12.0 | 70 | usa | chevrolet chevelle malibu | 2 |
+| 1 | 15.0 | 8 | 350.0 | 165.0 | 3693 | 11.5 | 70 | usa | buick skylark 320 | 2 |
+| 2 | 18.0 | 8 | 318.0 | 150.0 | 3436 | 11.0 | 70 | usa | plymouth satellite | 2 |
+| 3 | 16.0 | 8 | 304.0 | 150.0 | 3433 | 12.0 | 70 | usa | amc rebel sst | 2 |
+| 4 | 17.0 | 8 | 302.0 | 140.0 | 3449 | 10.5 | 70 | usa | ford torino | 2 |
+
+```python
+plt.figure(figsize=(12,5))
+sns.scatterplot(
+    x='mpg',
+    y='horsepower',
+    data=autoMPG_df,
+    hue='label',
+    palette='cool_r',
+    style='origin'
+).set_title('Horsepower as a function of Miles-per-gallon')
+
+plt.savefig('assets/Scikit_Learn_92.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_92.webp)
+
+```python
+plt.figure(figsize=(12,5))
+sns.scatterplot(
+    x='model_year',
+    y='mpg',
+    data=autoMPG_df,
+    hue='label',
+    palette='cool_r',
+    style='origin'
+).set_title('Model Year as a function of Miles-per-gallon')
+plt.legend(bbox_to_anchor=(1.01,1.01))
+
+plt.savefig('assets/Scikit_Learn_93.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_93.webp)
+
+```python
+figure, axes = plt.subplots(1, 3, sharex=True,figsize=(15, 5))
+figure.suptitle('Country of Origin')
+
+axes[0].set_title('second chart with no data')
+
+sns.scatterplot(
+    x='horsepower',
+    y='mpg',
+    data=autoMPG_df[autoMPG_df['origin'] == 'europe'],
+    hue='label',
+    palette='cool_r',
+    style='model_year',
+    ax=axes[0]
+).set_title('Europe')
+
+axes[1].set_title('Europe')
+
+sns.scatterplot(
+    x='horsepower',
+    y='mpg',
+    data=autoMPG_df[autoMPG_df['origin'] == 'japan'],
+    hue='label',
+    palette='cool_r',
+    style='model_year',
+    ax=axes[1]
+).set_title('Japan')
+
+axes[2].set_title('second chart with no data')
+
+sns.scatterplot(
+    x='horsepower',
+    y='mpg',
+    data=autoMPG_df[autoMPG_df['origin'] == 'usa'],
+    hue='label',
+    palette='cool_r',
+    style='model_year',
+    ax=axes[2]
+).set_title('USA') 
+plt.legend(bbox_to_anchor=(1.01,1.01))
+
+plt.savefig('assets/Scikit_Learn_94.webp', bbox_inches='tight')
+# nice... perfect separation by country!
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_94.webp)
+
+
+#### Unknown Number of Clusters
+
+The Clustermap created above allowed us to estimate the amount of clusters needed to accuratly label the dataset based on the __Dendrogram__ displayed on the left side. If we do not know how many clusters are present in our dataset we can define a maximum distance threshold a cluster can have before being merged with surrounding clusters. Setting this threshold to zero results in a number of clusters == number of datapoints.
+
+```python
+autoMPG_model_auto = AgglomerativeClustering(
+    n_clusters=None,
+    metric='euclidean',
+    distance_threshold=0
+)
+cluster_labels_auto = autoMPG_model_auto.fit_predict(autoMPG_scaled)
+len(np.unique(cluster_labels_auto))
+# threshold of zero leads to 392 clusters == number of rows in our dataset
+```
+
+```python
+# find out a good distance threshold
+linkage_matrix = hierarchy.linkage(autoMPG_model_auto.children_)
+linkage_matrix
+# [`cluster[i]`, `cluster[j]`, `distance between`, `number of members`]
+```
+
+```python
+# to display this matrix we can use the above mentioned dendrogram
+plt.figure(figsize=(20,10))
+plt.title('Hierarchy Dendrogram for 8 Classes')
+dendro = hierarchy.dendrogram(linkage_matrix, truncate_mode='lastp', p=9)
+
+plt.savefig('assets/Scikit_Learn_95.webp', bbox_inches='tight')
+# The higher the y-value the larger the distance between the connected clusters
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_95.webp)
+
+```python
+# since the miles-per-gallons are a good indicator for the label
+# what is the max distance between two points here:
+car_max_mpg = autoMPG_scaled.iloc[autoMPG_scaled['mpg'].idxmax()]
+car_min_mpg = autoMPG_scaled.iloc[autoMPG_scaled['mpg'].idxmin()]
+
+np.linalg.norm(car_max_mpg - car_min_mpg)
+# 3.1128158766165406
+# if the max distance is ~3 the threshold should be < 3
+```
+
+```python
+autoMPG_model_auto = AgglomerativeClustering(
+    n_clusters=None,
+    metric='euclidean',
+    distance_threshold=2
+)
+cluster_labels_auto = autoMPG_model_auto.fit_predict(autoMPG_scaled)
+len(np.unique(cluster_labels_auto))
+# threshold of two leads to 11 clusters
+```
+
+```python
+autoMPG_model_auto = AgglomerativeClustering(
+    n_clusters=None,
+    metric='euclidean',
+    distance_threshold=3
+)
+cluster_labels_auto = autoMPG_model_auto.fit_predict(autoMPG_scaled)
+len(np.unique(cluster_labels_auto))
+# threshold of three leads to 9 clusters
+```
+
+```python
+autoMPG_df['label_auto'] = cluster_labels_auto
+```
+
+```python
+figure, axes = plt.subplots(1, 3, sharex=True,figsize=(15, 6))
+figure.suptitle('Country of Origin')
+
+axes[0].set_title('second chart with no data')
+
+sns.scatterplot(
+    x='horsepower',
+    y='mpg',
+    data=autoMPG_df[autoMPG_df['origin'] == 'europe'],
+    hue='label_auto',
+    palette='cool_r',
+    style='model_year',
+    ax=axes[0]
+).set_title('Europe')
+
+axes[1].set_title('Europe')
+
+sns.scatterplot(
+    x='horsepower',
+    y='mpg',
+    data=autoMPG_df[autoMPG_df['origin'] == 'japan'],
+    hue='label_auto',
+    palette='cool_r',
+    style='model_year',
+    ax=axes[1]
+).set_title('Japan')
+
+axes[2].set_title('second chart with no data')
+
+sns.scatterplot(
+    x='horsepower',
+    y='mpg',
+    data=autoMPG_df[autoMPG_df['origin'] == 'usa'],
+    hue='label_auto',
+    palette='cool_r',
+    style='model_year',
+    ax=axes[2]
+).set_title('USA') 
+plt.legend(bbox_to_anchor=(1.01,1.01))
+
+plt.savefig('assets/Scikit_Learn_96.webp', bbox_inches='tight')
+# the division by countries is still there. but we are now getting
+# sub-classes within each country - which might be important depending on your set goal
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_96.webp)
