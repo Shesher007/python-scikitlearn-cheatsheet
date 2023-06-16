@@ -155,6 +155,14 @@
     - [Assigning Cluster Labels](#assigning-cluster-labels)
       - [Known Number of Clusters](#known-number-of-clusters)
       - [Unknown Number of Clusters](#unknown-number-of-clusters)
+  - [Unsupervised Learning - Density-based Spatial Clustering (DBSCAN)](#unsupervised-learning---density-based-spatial-clustering-dbscan)
+    - [DBSCAN vs KMeans](#dbscan-vs-kmeans)
+    - [DBSCAN Hyperparameter Tuning](#dbscan-hyperparameter-tuning)
+      - [Elbow Plot](#elbow-plot)
+    - [Realworld Dataset](#realworld-dataset)
+      - [Dataset Exploration](#dataset-exploration-4)
+      - [Data Preprocessing](#data-preprocessing-2)
+      - [Model Hyperparameter Tuning](#model-hyperparameter-tuning)
 
 <!-- /TOC -->
 
@@ -5496,3 +5504,606 @@ plt.savefig('assets/Scikit_Learn_96.webp', bbox_inches='tight')
 ```
 
 ![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_96.webp)
+
+
+## Unsupervised Learning - Density-based Spatial Clustering (DBSCAN)
+
+### DBSCAN vs KMeans
+
+```python
+blobs_df = pd.read_csv('datasets/blobs.csv')
+blobs_df.tail(2)
+```
+
+|   | X1 | X2 |
+| -- | -- | -- |
+| 1498 | 5.454552 | 6.461246 |
+| 1499 | -7.769230 | 7.014384 |
+
+```python
+plt.figure(figsize=(12,5))
+plt.title('Blobs Dataset')
+sns.scatterplot(data=blobs_df, x='X1', y='X2')
+
+plt.savefig('assets/Scikit_Learn_97.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_97.webp)
+
+```python
+moons_df = pd.read_csv('datasets/moons.csv')
+moons_df.tail(2)
+```
+
+|   | X1 | X2 |
+| -- | -- | -- |
+| 1498 | 1.803858 | -0.154705 |
+| 1499 | 0.203305 | 0.079049 |
+
+```python
+plt.figure(figsize=(12,5))
+plt.title('Moons Dataset')
+sns.scatterplot(data=moons_df, x='X1', y='X2')
+
+plt.savefig('assets/Scikit_Learn_98.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_98.webp)
+
+```python
+circles_df = pd.read_csv('datasets/circles.csv')
+circles_df.tail(2)
+```
+
+|   | X1 | X2 |
+| -- | -- | -- |
+| 1498 | 0.027432 | -0.264891 |
+| 1499 | -0.216732 | 0.183006 |
+
+```python
+plt.figure(figsize=(12,5))
+plt.title('Circles Dataset')
+sns.scatterplot(data=circles_df, x='X1', y='X2')
+
+plt.savefig('assets/Scikit_Learn_99.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_99.webp)
+
+```python
+def display_categories(model, data, axis):
+    labels = model.fit_predict(data)
+    sns.scatterplot(data=data, x='X1', y='X2', hue=labels, palette='cool' , ax=axis)
+```
+
+```python
+km_model_blobs = KMeans(n_clusters=3, init='random', n_init='auto')
+db_model_blobs = DBSCAN(eps=0.5, min_samples=5)
+
+figure, axes = plt.subplots(1, 2, sharex=True,figsize=(12, 6))
+figure.suptitle('3 Blobs Dataset')
+
+axes[0].set_title('KMeans Clustering')
+display_categories(km_model_blobs, blobs_df, axes[0])
+
+axes[1].set_title('DBSCAN Clustering')
+display_categories(db_model_blobs, blobs_df, axes[1])
+
+plt.savefig('assets/Scikit_Learn_100.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_100.webp)
+
+```python
+km_model_moons = KMeans(n_clusters=2, init='random', n_init='auto')
+db_model_moons = DBSCAN(eps=0.2, min_samples=5)
+
+figure, axes = plt.subplots(1, 2, sharex=True,figsize=(12, 6))
+figure.suptitle('2 Moons Dataset')
+
+axes[0].set_title('KMeans Clustering')
+display_categories(km_model_moons, moons_df, axes[0])
+
+axes[1].set_title('DBSCAN Clustering')
+display_categories(db_model_moons, moons_df, axes[1])
+
+plt.savefig('assets/Scikit_Learn_101.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_101.webp)
+
+```python
+km_model_circles = KMeans(n_clusters=2, init='random', n_init='auto')
+db_model_circles = DBSCAN(eps=0.2, min_samples=5)
+
+figure, axes = plt.subplots(1, 2, sharex=True,figsize=(12, 6))
+figure.suptitle('2 Circles Dataset')
+
+axes[0].set_title('KMeans Clustering')
+display_categories(km_model_circles, circles_df, axes[0])
+
+axes[1].set_title('DBSCAN Clustering')
+display_categories(db_model_circles, circles_df, axes[1])
+
+plt.savefig('assets/Scikit_Learn_102.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_102.webp)
+
+
+### DBSCAN Hyperparameter Tuning
+
+```python
+two_blobs_df = pd.read_csv('datasets/two-blobs.csv')
+two_blobs_otl_df = pd.read_csv('datasets/two-blobs-outliers.csv')
+```
+
+```python
+# default hyperparameter
+db_model_base = DBSCAN(eps=0.5, min_samples=5)
+
+figure, axes = plt.subplots(1, 2, sharex=True,figsize=(12, 6))
+figure.suptitle('2 Blobs Dataset - Default Hyperparameter')
+
+axes[0].set_title('DBSCAN Clustering w/o Outliers')
+display_categories(db_model_base, two_blobs_df, axes[0])
+
+axes[1].set_title('DBSCAN Clustering with Outliers')
+display_categories(db_model_base, two_blobs_otl_df, axes[1])
+
+plt.savefig('assets/Scikit_Learn_103.webp', bbox_inches='tight')
+# points around cluster 1 are assigned to be outliers
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_103.webp)
+
+```python
+# reducing epsilon reduces the max distance (epsilon)
+# points are allowed to have and still be assigned to a cluster
+db_model_dec = DBSCAN(eps=0.001, min_samples=5)
+
+figure, axes = plt.subplots(1, 2, sharex=True,figsize=(12, 6))
+figure.suptitle('2 Blobs Dataset - Reduced Epsilon')
+
+axes[0].set_title('DBSCAN Clustering w/o Outliers')
+display_categories(db_model_dec, two_blobs_df, axes[0])
+
+axes[1].set_title('DBSCAN Clustering with Outliers')
+display_categories(db_model_dec, two_blobs_otl_df, axes[1])
+
+plt.savefig('assets/Scikit_Learn_104.webp', bbox_inches='tight')
+# distance is too small - every point becomes it's own cluster and is assigned as an outlier
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_104.webp)
+
+```python
+# increasing epsilon increases the max distance (epsilon)
+# points are allowed to have and still be assigned to a cluster
+db_model_inc = DBSCAN(eps=10, min_samples=5)
+
+figure, axes = plt.subplots(1, 2, sharex=True,figsize=(12, 6))
+figure.suptitle('2 Blobs Dataset - Increased Epsilon')
+
+axes[0].set_title('DBSCAN Clustering w/o Outliers')
+display_categories(db_model_inc, two_blobs_df, axes[0])
+
+axes[1].set_title('DBSCAN Clustering with Outliers')
+display_categories(db_model_inc, two_blobs_otl_df, axes[1])
+
+plt.savefig('assets/Scikit_Learn_105.webp', bbox_inches='tight')
+# distance is too big - every point becomes becomes part of the same cluster
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_105.webp)
+
+
+#### Elbow Plot
+
+```python
+epsilon_value_range = np.linspace(0.0001, 1, 100)
+
+n_outliers = []
+perc_outlier = []
+n_clusters = []
+
+for epsilon in epsilon_value_range:
+    dbscan_model = DBSCAN(eps=epsilon)
+    dbscan_model.fit(two_blobs_otl_df)
+    
+    # total number of outliers
+    n_outliers.append(np.sum(dbscan_model.labels_ == -1))
+    # percentage of outliers
+    perc_outlier.append(
+        100 * np.sum(dbscan_model.labels_ == -1) / len(dbscan_model.labels_)
+    )
+    # number of clusters
+    n_clusters.append(len(np.unique(dbscan_model.labels_)))
+```
+
+```python
+plt.figure(figsize=(12,5))
+plt.title('Elbow Plot - DBSCAN Hyperparameter')
+plt.xlabel('Epsilon (Max Distance between Points)')
+plt.ylabel('Number of Outliers')
+plt.ylim(0,10)
+# we expect 3 outliers
+plt.hlines(y=3, xmin=0, xmax=0.7, color='fuchsia')
+# 3 outliers are reached somewhere around eps=0.7
+plt.vlines(x=0.7, ymin=0, ymax=3, color='fuchsia')
+sns.lineplot(x=epsilon_value_range, y=n_outliers)
+
+plt.savefig('assets/Scikit_Learn_107.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_107.webp)
+
+```python
+plt.figure(figsize=(12,5))
+plt.title('Number of Clusters by Epsilon Range')
+plt.xlabel('Epsilon (Max Distance between Points)')
+plt.ylabel('Number of Clusters')
+# we expect 2 clusters + outliers
+plt.hlines(y=3, xmin=0, xmax=1, color='fuchsia')
+plt.ylim(0,50)
+plt.xlim(0,1)
+sns.lineplot(x=epsilon_value_range, y=n_clusters)
+
+plt.savefig('assets/Scikit_Learn_108.webp', bbox_inches='tight')
+# we already reach 3 cluster with an epsilon of 0.2
+# but as seen above we need an epsilon of 0.7 to reduce
+# the number of outliers to 3
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_108.webp)
+
+```python
+# find the optimum
+# rule of thumb for min_samples = 2*n_dim
+n_dim = two_blobs_otl_df.shape[1]
+db_model_opt = DBSCAN(eps=0.7, min_samples=2*n_dim)
+
+figure, axes = plt.subplots(1, 2, sharex=True,figsize=(12, 6))
+figure.suptitle('2 Blobs Dataset - Optimal Epsilon')
+
+axes[0].set_title('DBSCAN Clustering w/o Outliers')
+display_categories(db_model_opt, two_blobs_df, axes[0])
+
+axes[1].set_title('DBSCAN Clustering with Outliers')
+display_categories(db_model_opt, two_blobs_otl_df, axes[1])
+
+plt.savefig('assets/Scikit_Learn_106.webp', bbox_inches='tight')
+# the 3 outliers are labled as such and every other point is assigned to one of the two clusters
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_106.webp)
+
+```python
+# find number of outliers
+print('Number of Outliers', np.sum(db_model_opt.labels_ == -1))
+# Number of Outliers 3
+# get outlier percentage
+print('Percentage of Outliers', (100 * np.sum(db_model_opt.labels_ == -1) / len(db_model_opt.labels_)).round(2),'%')
+# Percentage of Outliers 0.3 %
+```
+
+<!-- #region -->
+### Realworld Dataset
+
+> [Wholesale customers](https://archive.ics.uci.edu/dataset/292/wholesale+customers)
+> The data set refers to clients of a wholesale distributor. It includes the annual spending in monetary units (m.u.) on diverse product categories
+
+__Additional Information__
+1. __FRESH__: annual spending (m.u.) on fresh products (Continuous)
+2. __MILK__: annual spending (m.u.) on milk products (Continuous)
+3. __GROCERY__: annual spending (m.u.) on grocery products (Continuous)
+4. __FROZEN__: annual spending (m.u.) on frozen products (Continuous)
+5. __DETERGENTS\_PAPER__: annual spending (m.u.) on detergents and paper products (Continuous) 
+6. __DELICATESSEN__: annual spending (m.u.)on and delicatessen products (Continuous)
+7. __CHANNEL__: customers Channel - Horeca (Hotel/Restaurant/Cafe) or Retail channel (Nominal)
+8. __REGION__: customers Region - Lisnon, Oporto or Other (Nominal)
+
+
+#### Dataset Exploration
+<!-- #endregion -->
+
+```python
+wholesale_df = pd.read_csv('datasets/wholesome-customers-data.csv')
+wholesale_df.head(5)
+```
+
+|  | Channel | Region | Fresh | Milk | Grocery | Frozen | Detergents_Paper | Delicassen |
+| -- | -- | -- | -- | -- | -- | -- | -- | -- |
+| 0 | 2 | 3 | 12669 | 9656 | 7561 | 214 | 2674 | 1338 |
+| 1 | 2 | 3 | 7057 | 9810 | 9568 | 1762 | 3293 | 1776 |
+| 2 | 2 | 3 | 6353 | 8808 | 7684 | 2405 | 3516 | 7844 |
+| 3 | 1 | 3 | 13265 | 1196 | 4221 | 6404 | 507 | 1788 |
+| 4 | 2 | 3 | 22615 | 5410 | 7198 | 3915 | 1777 | 5185 |
+
+```python
+
+wholesale_df.info()
+```
+
+```python
+plt.figure(figsize=(12,5))
+plt.title('Whole Sale: Milk Products vs Groceries')
+sns.scatterplot(
+    data=wholesale_df,
+    x='Milk', y='Grocery',
+    hue='Channel', style='Region',
+    palette='winter'
+)
+
+plt.savefig('assets/Scikit_Learn_109.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_109.webp)
+
+```python
+plt.figure(figsize=(10, 5))
+plt.title('Whole Sale: Milk Products by Distribution Channel')
+
+sns.histplot(
+    data=wholesale_df,
+    x='Milk',
+    bins=50,
+    hue='Channel',
+    palette='winter',
+    kde=True
+)
+
+plt.savefig('assets/Scikit_Learn_110.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_110.webp)
+
+```python
+sns.clustermap(
+    wholesale_df.corr(),
+    linewidth=0.5,
+    cmap='winter',
+    annot=True,
+    col_cluster=False
+)
+
+plt.savefig('assets/Scikit_Learn_111.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_111.webp)
+
+```python
+sns.pairplot(
+    data=wholesale_df,
+    hue='Region',
+    palette='winter'
+)
+
+plt.savefig('assets/Scikit_Learn_112.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_112.webp)
+
+
+#### Data Preprocessing
+
+```python
+# normalize feature set
+scaler = StandardScaler()
+wholesale_scaled = pd.DataFrame(
+    scaler.fit_transform(wholesale_df), columns=wholesale_df.columns
+)
+```
+
+```python
+wholesale_scaled.describe()
+```
+
+|  | Channel | Region | Fresh | Milk | Grocery | Frozen | Detergents_Paper | Delicassen |
+| -- | -- | -- | -- | -- | -- | -- | -- | -- |
+| count | 4.400000e+02 | 4.400000e+02 | 4.400000e+02 | 440.000000 | 4.400000e+02 | 4.400000e+02 | 4.400000e+02 | 4.400000e+02 |
+| mean | 1.614870e-17 | 3.552714e-16 | -3.431598e-17 | 0.000000 | -4.037175e-17 | 3.633457e-17 | 2.422305e-17 | -8.074349e-18 |
+| std | 1.001138e+00 | 1.001138e+00 | 1.001138e+00 | 1.001138 | 1.001138e+00 | 1.001138e+00 | 1.001138e+00 | 1.001138e+00 |
+| min | -6.902971e-01 | -1.995342e+00 | -9.496831e-01 | -0.778795 | -8.373344e-01 | -6.283430e-01 | -6.044165e-01 | -5.402644e-01 |
+| 25% | -6.902971e-01 | -7.023369e-01 | -7.023339e-01 | -0.578306 | -6.108364e-01 | -4.804306e-01 | -5.511349e-01 | -3.964005e-01 |
+| 50% | -6.902971e-01 | 5.906683e-01 | -2.767602e-01 | -0.294258 | -3.366684e-01 | -3.188045e-01 | -4.336004e-01 | -1.985766e-01 |
+| 75% | 1.448652e+00 | 5.906683e-01 | 3.905226e-01 | 0.189092 | 2.849105e-01 | 9.946441e-02 | 2.184822e-01 | 1.048598e-01 |
+| max | 1.448652e+00 | 5.906683e-01 | 7.927738e+00 | 9.183650 | 8.936528e+00 | 1.191900e+01 | 7.967672e+00 | 1.647845e+01 |
+
+
+#### Model Hyperparameter Tuning
+
+```python
+epsilon_value_range = np.linspace(0.001, 3, 100)
+n_dim = wholesale_scaled.shape[1]
+
+n_outliers = []
+perc_outlier = []
+n_clusters = []
+
+for epsilon in epsilon_value_range:
+    dbscan_model = DBSCAN(eps=epsilon, min_samples=2*n_dim)
+    dbscan_model.fit(wholesale_scaled)
+    
+    # total number of outliers
+    n_outliers.append(np.sum(dbscan_model.labels_ == -1))
+    # percentage of outliers
+    perc_outlier.append(
+        100 * np.sum(dbscan_model.labels_ == -1) / len(dbscan_model.labels_)
+    )
+    # number of clusters
+    n_clusters.append(len(np.unique(dbscan_model.labels_)))
+```
+
+```python
+plt.figure(figsize=(12,5))
+plt.title('Elbow Plot - DBSCAN Hyperparameter')
+plt.xlabel('Epsilon (Max Distance between Points)')
+plt.ylabel('Number of Outliers')
+plt.hlines(y=25, xmin=0, xmax=2, color='fuchsia')
+plt.vlines(x=2, ymin=0, ymax=25, color='fuchsia')
+sns.lineplot(x=epsilon_value_range, y=n_outliers)
+
+plt.savefig('assets/Scikit_Learn_113.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_113.webp)
+
+```python
+plt.figure(figsize=(12,5))
+plt.title('Number of Clusters by Epsilon Range')
+plt.xlabel('Epsilon (Max Distance between Points)')
+plt.ylabel('Number of Clusters')
+plt.hlines(y=3, xmin=0, xmax=2, color='fuchsia')
+plt.vlines(x=2, ymin=0, ymax=3, color='fuchsia')
+sns.lineplot(x=epsilon_value_range, y=n_clusters)
+
+plt.savefig('assets/Scikit_Learn_114.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_114.webp)
+
+```python
+def wholesale_categories(model, data, x, y, axis):
+    labels = model.fit_predict(data)
+    sns.scatterplot(data=data, x=x, y=y, hue=labels, palette='cool' , ax=axis)
+```
+
+```python
+db_model_opt = DBSCAN(eps=2.0, min_samples=2*n_dim)
+
+figure, axes = plt.subplots(1, 2, sharex=True,figsize=(12, 6))
+figure.suptitle('Whole Sale Dataset - DBSCAN Cluster (Normalized)')
+
+axes[0].set_title('DBSCAN Clustering Milk Products vs Groceries')
+wholesale_categories(
+    model=db_model_opt,
+    data=wholesale_scaled,
+    x='Milk', y='Grocery',
+    axis=axes[0]
+)
+
+axes[1].set_title('DBSCAN Clustering Milk Products vs Delicassen')
+wholesale_categories(
+    model=db_model_opt,
+    data=wholesale_scaled,
+    x='Milk', y='Delicassen',
+    axis=axes[1]
+)
+
+plt.savefig('assets/Scikit_Learn_115a.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_115a.webp)
+
+```python
+# add labels to original dataframe
+wholesale_df['Label'] = db_model_opt.fit_predict(wholesale_scaled)
+wholesale_df['Label'].head(5)
+```
+
+```python
+# remove outliers
+wholesale_df_wo_otl = wholesale_df[wholesale_df['Label'] != -1]
+```
+
+```python
+db_model_opt = DBSCAN(eps=3.0, min_samples=2*n_dim)
+
+figure, axes = plt.subplots(1, 2, sharex=True,figsize=(12, 6))
+figure.suptitle('Whole Sale Dataset - DBSCAN Cluster (w/o Outliers)')
+
+axes[0].set_title('DBSCAN Clustering Milk Products vs Groceries')
+sns.scatterplot(
+    data=wholesale_df_wo_otl,
+    x='Milk', y='Grocery',
+    hue='Label',
+    palette='cool',
+    ax=axes[0]
+)
+
+axes[1].set_title('DBSCAN Clustering Milk Products vs Delicassen')
+sns.scatterplot(
+    data=wholesale_df_wo_otl,
+    x='Milk', y='Delicassen',
+    hue='Label',
+    palette='cool',
+    ax=axes[1]
+)
+
+plt.savefig('assets/Scikit_Learn_115b.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_115b.webp)
+
+```python
+# see if the mean values of each cluster differ from each other
+grouped_df = wholesale_df.groupby('Label').mean()
+```
+
+| Label | Channel | Region | Fresh | Milk | Grocery | Frozen | Detergents_Paper | Delicassen |
+| -- | -- |  -- | -- | -- | -- | -- | -- | -- |
+| -1 | 1.52 | 2.480000 | 27729.920000 | 22966.960000 | 26609.600000 | 11289.640000 | 11173.560000 | 6707.160000 |
+| 0 | 2.00 | 2.620155 | 8227.666667 | 8615.852713 | 13859.674419 | 1447.759690 | 5969.581395 | 1498.457364 |
+| 1 | 1.00 | 2.513986 | 12326.972028 | 3023.559441 | 3655.328671 | 3086.181818 | 763.783217 | 1083.786713 |
+
+```python
+scaler = MinMaxScaler()
+grouped_scaler = pd.DataFrame(
+    scaler.fit_transform(grouped_df), columns=grouped_df.columns, index=['Outlier', 'Cluster 1', 'Cluster 2']
+)
+grouped_scaler.head()
+```
+
+|  | Channel | Region | Fresh | Milk | Grocery | Frozen | Detergents_Paper | Delicassen |
+| -- | -- | -- | -- | -- | -- | -- | -- | -- |  
+| Outlier | 0.52 | 0.000000 | 1.000000 | 1.000000 | 1.000000 | 1.000000 | 1.000000 | 1.000000 | 
+| Cluster 1 | 1.00 | 1.000000 | 0.000000 | 0.280408 | 0.444551 | 0.000000 | 0.500087 | 0.073741 |
+| Cluster 2 | 0.00 | 0.242489 | 0.210196 | 0.000000 | 0.000000 | 0.166475 | 0.000000 | 0.000000 |
+
+```python
+plt.figure(figsize=(12, 3))
+plt.title('Scaled Cluster / Outliers Comparison (Normalized)')
+
+sns.heatmap(
+    grouped_scaler,
+    linewidth=0.5,
+    cmap='coolwarm',
+    annot=True
+)
+
+plt.savefig('assets/Scikit_Learn_116.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_116.webp)
+
+```python
+grouped_df = grouped_df.drop(['Labels'], axis=1)
+```
+
+```python
+# remove outlier
+wholesale_clusters = grouped_df.drop(-1, axis=0)
+wholesale_clusters.head()
+```
+
+| Label | Channel | Region | Fresh | Milk | Grocery | Frozen | Detergents_Paper | Delicassen | 
+| -- | -- | -- | -- | -- | -- | -- | -- | -- |
+| 0 | 2.0 | 2.620155 | 8227.666667 | 8615.852713 | 13859.674419 | 1447.759690 | 5969.581395 | 1498.457364 |
+| 1 | 1.0 | 2.513986 | 12326.972028 | 3023.559441 | 3655.328671 | 3086.181818 | 763.783217 | 1083.786713 |
+
+```python
+plt.figure(figsize=(12, 3))
+plt.title('Mean Spending Values for Cluster 1 and 2')
+
+sns.heatmap(
+    wholesale_clusters,
+    linewidth=0.5,
+    cmap='coolwarm',
+    annot=True
+)
+
+plt.savefig('assets/Scikit_Learn_117.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_117.webp)
