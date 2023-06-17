@@ -163,6 +163,12 @@
       - [Dataset Exploration](#dataset-exploration-4)
       - [Data Preprocessing](#data-preprocessing-2)
       - [Model Hyperparameter Tuning](#model-hyperparameter-tuning)
+  - [Dimension Reduction - Principal Component Analysis (PCA)](#dimension-reduction---principal-component-analysis-pca)
+    - [Dataset Preprocessing](#dataset-preprocessing-4)
+    - [Model Fitting](#model-fitting-5)
+    - [Dataset 2](#dataset-2)
+      - [Dataset 2 Preprocessing](#dataset-2-preprocessing)
+      - [Model Fitting](#model-fitting-6)
 
 <!-- /TOC -->
 
@@ -6107,3 +6113,425 @@ plt.savefig('assets/Scikit_Learn_117.webp', bbox_inches='tight')
 ```
 
 ![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_117.webp)
+
+
+## Dimension Reduction - Principal Component Analysis (PCA)
+
+### Dataset Preprocessing
+
+Breast cancer wisconsin (diagnostic) dataset.
+
+* Attribute Information:
+  * radius (mean of distances from center to points on the perimeter)
+  * texture (standard deviation of gray-scale values)
+  * perimeter
+  * area
+  * smoothness (local variation in radius lengths)
+  * compactness (perimeter^2 / area - 1.0)
+  * concavity (severity of concave portions of the contour)
+  * concave points (number of concave portions of the contour)
+  * symmetry
+  * fractal dimension ("coastline approximation" - 1)
+
+The mean, standard error, and "worst" or largest (mean of the three worst/largest values) of these features were computed for each image, resulting in 30 features.  For instance, field 0 is Mean Radius, field 10 is Radius SE, field 20 is Worst Radius.
+
+* class:
+  * WDBC-Malignant
+  * WDBC-Benign
+
+```python
+tumor_df = pd.read_csv('datasets/cancer-tumor-data-features.csv')
+tumor_df.head(5).transpose()
+```
+
+|  | 0 | 1 | 2 | 3 | 4 |
+| -- | -- | -- | -- | -- | -- |
+| mean radius | 17.990000 | 20.570000 | 19.690000 | 11.420000 | 20.290000 |
+| mean texture | 10.380000 | 17.770000 | 21.250000 | 20.380000 | 14.340000 |
+| mean perimeter | 122.800000 | 132.900000 | 130.000000 | 77.580000 | 135.100000 |
+| mean area | 1001.000000 | 1326.000000 | 1203.000000 | 386.100000 | 1297.000000 |
+| mean smoothness | 0.118400 | 0.084740 | 0.109600 | 0.142500 | 0.100300 |
+| mean compactness | 0.277600 | 0.078640 | 0.159900 | 0.283900 | 0.132800 |
+| mean concavity | 0.300100 | 0.086900 | 0.197400 | 0.241400 | 0.198000 |
+| mean concave points | 0.147100 | 0.070170 | 0.127900 | 0.105200 | 0.104300 |
+| mean symmetry | 0.241900 | 0.181200 | 0.206900 | 0.259700 | 0.180900 |
+| mean fractal dimension | 0.078710 | 0.056670 | 0.059990 | 0.097440 | 0.058830 |
+| radius error | 1.095000 | 0.543500 | 0.745600 | 0.495600 | 0.757200 |
+| texture error | 0.905300 | 0.733900 | 0.786900 | 1.156000 | 0.781300 |
+| perimeter error | 8.589000 | 3.398000 | 4.585000 | 3.445000 | 5.438000 |
+| area error | 153.400000 | 74.080000 | 94.030000 | 27.230000 | 94.440000 |
+| smoothness error | 0.006399 | 0.005225 | 0.006150 | 0.009110 | 0.011490 |
+| compactness error | 0.049040 | 0.013080 | 0.040060 | 0.074580 | 0.024610 |
+| concavity error | 0.053730 | 0.018600 | 0.038320 | 0.056610 | 0.056880 |
+| concave points error | 0.015870 | 0.013400 | 0.020580 | 0.018670 | 0.018850 |
+| symmetry error | 0.030030 | 0.013890 | 0.022500 | 0.059630 | 0.017560 |
+| fractal dimension error | 0.006193 | 0.003532 | 0.004571 | 0.009208 | 0.005115 |
+| worst radius | 25.380000 | 24.990000 | 23.570000 | 14.910000 | 22.540000 |
+| worst texture | 17.330000 | 23.410000 | 25.530000 | 26.500000 | 16.670000 |
+| worst perimeter | 184.600000 | 158.800000 | 152.500000 | 98.870000 | 152.200000 |
+| worst area | 2019.000000 | 1956.000000 | 1709.000000 | 567.700000 | 1575.000000 |
+| worst smoothness | 0.162200 | 0.123800 | 0.144400 | 0.209800 | 0.137400 |
+| worst compactness | 0.665600 | 0.186600 | 0.424500 | 0.866300 | 0.205000 |
+| worst concavity | 0.711900 | 0.241600 | 0.450400 | 0.686900 | 0.400000 |
+| worst concave points | 0.265400 | 0.186000 | 0.243000 | 0.257500 | 0.162500 |
+| worst symmetry | 0.460100 | 0.275000 | 0.361300 | 0.663800 | 0.236400 |
+| worst fractal dimension | 0.118900 | 0.089020 | 0.087580 | 0.173000 | 0.076780 |
+
+```python
+# normalizing data
+scaler = StandardScaler()
+tumor_scaled_arr = scaler.fit_transform(tumor_df)
+```
+
+```python
+tumor_scaled_df = pd.DataFrame(
+    tumor_scaled_arr, columns=tumor_df.columns
+)
+tumor_scaled_df.head(5).transpose()
+```
+
+|  | 0 | 1 | 2 | 3 | 4 |
+| -- | -- | -- | -- | -- | -- |
+| mean radius | 1.097064 | 1.829821 | 1.579888 | -0.768909 | 1.750297 |
+| mean texture | -2.073335 | -0.353632 | 0.456187 | 0.253732 | -1.151816 |
+| mean perimeter | 1.269934 | 1.685955 | 1.566503 | -0.592687 | 1.776573 |
+| mean area | 0.984375 | 1.908708 | 1.558884 | -0.764464 | 1.826229 |
+| mean smoothness | 1.568466 | -0.826962 | 0.942210 | 3.283553 | 0.280372 |
+| mean compactness | 3.283515 | -0.487072 | 1.052926 | 3.402909 | 0.539340 |
+| mean concavity | 2.652874 | -0.023846 | 1.363478 | 1.915897 | 1.371011 |
+| mean concave points | 2.532475 | 0.548144 | 2.037231 | 1.451707 | 1.428493 |
+| mean symmetry | 2.217515 | 0.001392 | 0.939685 | 2.867383 | -0.009560 |
+| mean fractal dimension | 2.255747 | -0.868652 | -0.398008 | 4.910919 | -0.562450 |
+| radius error | 2.489734 | 0.499255 | 1.228676 | 0.326373 | 1.270543 |
+| texture error | -0.565265 | -0.876244 | -0.780083 | -0.110409 | -0.790244 |
+| perimeter error | 2.833031 | 0.263327 | 0.850928 | 0.286593 | 1.273189 |
+| area error | 2.487578 | 0.742402 | 1.181336 | -0.288378 | 1.190357 |
+| smoothness error | -0.214002 | -0.605351 | -0.297005 | 0.689702 | 1.483067 |
+| compactness error | 1.316862 | -0.692926 | 0.814974 | 2.744280 | -0.048520 |
+| concavity error | 0.724026 | -0.440780 | 0.213076 | 0.819518 | 0.828471 |
+| concave points error | 0.660820 | 0.260162 | 1.424827 | 1.115007 | 1.144205 |
+| symmetry error | 1.148757 | -0.805450 | 0.237036 | 4.732680 | -0.361092 |
+| fractal dimension error | 0.907083 | -0.099444 | 0.293559 | 2.047511 | 0.499328 |
+| worst radius | 1.886690 | 1.805927 | 1.511870 | -0.281464 | 1.298575 |
+| worst texture | -1.359293 | -0.369203 | -0.023974 | 0.133984 | -1.466770 |
+| worst perimeter | 2.303601 | 1.535126 | 1.347475 | -0.249939 | 1.338539 |
+| worst area | 2.001237 | 1.890489 | 1.456285 | -0.550021 | 1.220724 |
+| worst smoothness | 1.307686 | -0.375612 | 0.527407 | 3.394275 | 0.220556 |
+| worst compactness | 2.616665 | -0.430444 | 1.082932 | 3.893397 | -0.313395 |
+| worst concavity | 2.109526 | -0.146749 | 0.854974 | 1.989588 | 0.613179 |
+| worst concave points | 2.296076 | 1.087084 | 1.955000 | 2.175786 | 0.729259 |
+| worst symmetry | 2.750622 | -0.243890 | 1.152255 | 6.046041 | -0.868353 |
+| worst fractal dimension | 1.937015 | 0.281190 | 0.201391 | 4.935010 | -0.397100 |
+
+
+### Model Fitting
+
+```python
+pca_model = PCA(n_components=2)
+pca_results = pca_model.fit_transform(tumor_scaled_df)
+```
+
+```python
+print(pca_model.explained_variance_ratio_)
+print(np.sum(pca_model.explained_variance_ratio_))
+# the two principal components are able to describe
+# 63% of the variance in the dataset
+# [0.44272026 0.18971182]
+# 0.6324320765155945
+```
+
+```python
+# adding components to original dataframe
+tumor_df[['PC1','PC2']] = pca_results
+tumor_df[['PC1','PC2']].head(5).transpose()
+```
+
+|  | 0 | 1 | 2 | 3 | 4 |
+| -- | -- | -- | -- | -- | -- |
+| PC1 | 9.192837 | 2.387802 | 5.733896 | 7.122953 | 3.935302 |
+| PC2 | 1.948583 | -3.768172 | -1.075174 | 10.275589 | -1.948072 |
+
+```python
+plt.figure(figsize=(12,5))
+plt.title('Principal Component Analysis - Cancer Tumor Dataset')
+sns.scatterplot(
+    data=tumor_df,
+    x='PC1', y='PC2'
+)
+
+plt.savefig('assets/Scikit_Learn_118.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_118.webp)
+
+```python
+# get label data from dataset to confirm that we still have
+# separably clusters after reducing the dimensions to 2
+from sklearn.datasets import load_breast_cancer
+```
+
+```python
+tumor_dataset = load_breast_cancer()
+tumor_dataset.keys()
+# dict_keys(['data', 'target', 'frame', 'target_names', 'DESCR', 'feature_names', 'filename', 'data_module'])
+```
+
+```python
+tumor_dataset['target']
+```
+
+```python
+plt.figure(figsize=(12,5))
+plt.title('PCA Cancer Tumor Dataset - Coloured by Labels')
+sns.scatterplot(
+    data=tumor_df,
+    x='PC1', y='PC2',
+    hue=tumor_dataset['target'],
+    palette='winter'
+)
+
+plt.savefig('assets/Scikit_Learn_119.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_119.webp)
+
+```python
+# as shown above we get around 63% of the variance explained by using 2 principal components
+# since the dataset has 30 features 30 principal components will explain 100% of the variance
+
+explained_variance = []
+
+for n in range(1,31):
+    pca = PCA(n_components=n)
+    pca.fit(tumor_scaled_df)
+    
+    explained_variance.append(np.sum(pca.explained_variance_ratio_))
+```
+
+```python
+plt.figure(figsize=(10, 5))
+plt.title('Explained Variance by Number of Principal Components')
+plt.xlabel('Principal Components')
+sns.set(style='darkgrid')
+sns.barplot(
+    data=pd.DataFrame(explained_variance, columns=['Explained Variance']),
+    x=np.arange(1,31),
+    y='Explained Variance'
+)
+
+plt.savefig('assets/Scikit_Learn_120.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_120.webp)
+
+
+### Dataset 2
+
+* [Digits Dataset](https://github.com/scikit-learn/scikit-learn/blob/main/sklearn/datasets/descr/digits.rst)
+
+What handwritten numbers are the hardest to tell apart for a ML Model? 
+
+```python
+digits_df = pd.read_csv('datasets/digits.csv')
+digits_df.head(5).transpose()
+```
+
+|  | 0 | 1 | 2 | 3 | 4 |
+| -- | -- | -- | -- | -- | -- |
+| pixel_0_0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| pixel_0_1 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| pixel_0_2 | 5.0 | 0.0 | 0.0 | 7.0 | 0.0 |
+| pixel_0_3 | 13.0 | 12.0 | 4.0 | 15.0 | 1.0 |
+| pixel_0_4 | 9.0 | 13.0 | 15.0 | 13.0 | 11.0 |
+| ... |
+| pixel_7_4 | 10.0 | 16.0 | 11.0 | 13.0 | 16.0 |
+| pixel_7_5 | 0.0 | 10.0 | 16.0 | 9.0 | 4.0 |
+| pixel_7_6 | 0.0 | 0.0 | 9.0 | 0.0 | 0.0 |
+| pixel_7_7 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| number_label | 0.0 | 1.0 | 2.0 | 3.0 | 4.0 |
+
+```python
+# drop label column
+X_digits = digits_df.drop('number_label', axis=1)
+digits_labels = digits_df['number_label']
+```
+
+```python
+# select a single images
+img_idx = 333
+Single_Digit = np.array(X_digits.iloc[img_idx])
+Single_Digit.shape
+# the images inside the dataset are flattened
+# (64,)
+```
+
+```python
+# need to be turned back into their 8x8 pixel format
+Single_Digit = Single_Digit.reshape((8, 8))
+Single_Digit.shape
+# (8, 8)
+```
+
+```python
+# Display the Image
+plt.figure(figsize=(4,4))
+plt.imshow(Single_Digit, interpolation='nearest', cmap='plasma')
+plt.title('Digit Label: %d' % digits_labels[img_idx])
+plt.show()
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_121.webp)
+
+```python
+plt.figure(figsize=(8,6))
+plt.title('Digit Label: %d' % digits_labels[0])
+
+sns.heatmap(
+    Single_Digit,
+    linewidth=0.5,
+    cmap='plasma_r',
+    annot=True
+)
+
+plt.savefig('assets/Scikit_Learn_122.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_122.webp)
+
+
+#### Dataset 2 Preprocessing
+
+```python
+# normalize data
+scaler = StandardScaler()
+digits_scaled = pd.DataFrame(
+    scaler.fit_transform(X_digits), columns=X_digits.columns
+)
+digits_scaled.head(5).transpose()
+```
+
+|  | 0 | 1 | 2 | 3 | 4 |
+| -- | -- | -- | -- | -- | -- |
+| pixel_0_0 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | 0.000000 |
+| pixel_0_1 | -0.335016 | -0.335016 | -0.335016 | -0.335016 | -0.335016 |
+| pixel_0_2 | -0.043081 | -1.094937 | -1.094937 | 0.377661 | -1.094937 |
+| pixel_0_3 | 0.274072 | 0.038648 | -1.844742 | 0.744919 | -2.551014 |
+| pixel_0_4 | -0.664478 | 0.268751 | 0.735366 | 0.268751 | -0.197863 |
+| ... |
+| pixel_7_3 | 0.208293 | -0.249010 | -2.078218 | 0.208293 | -2.306869 |
+| pixel_7_4 | -0.366771 | 0.849632 | -0.164037 | 0.241430 | 0.849632 |
+| pixel_7_5 | -1.146647 | 0.548561 | 1.565686 | 0.379040 | -0.468564 |
+| pixel_7_6 | -0.505670 | -0.505670 | 1.695137 | -0.505670 | -0.505670 |
+| pixel_7_7 | -0.196008 | -0.196008 | -0.196008 | -0.196008 | -0.196008 |
+
+
+#### Model Fitting
+
+```python
+pca_model2 = PCA(n_components=2)
+pca_results2 = pca_model2.fit_transform(digits_scaled)
+print(np.sum(pca_model2.explained_variance_ratio_))
+# reducing the number of dimensions from 64 -> 2 leads to 22% explained variance
+```
+
+```python
+X_digits[['PC1','PC2']] = pca_results2
+X_digits[['PC1','PC2']].head(5).transpose()
+```
+
+|  | 0 | 1 | 2 | 3 | 4 |
+| -- | -- | -- | -- | -- | -- |
+| PC1 | 1.914264 | 0.588997 | 1.302144 | -3.020847 | 4.528854 |
+| PC2 | -0.954564 | 0.924622 | -0.317291 | -0.868696 | -1.093369 |
+
+```python
+plt.figure(figsize=(12,5))
+plt.title('PCA Digits Dataset - Coloured by Labels')
+sns.scatterplot(
+    data=X_digits,
+    x='PC1', y='PC2',
+    hue=digits_labels,
+    palette='tab20'
+)
+plt.legend(bbox_to_anchor=(1.01,1.01))
+
+plt.savefig('assets/Scikit_Learn_123.webp', bbox_inches='tight')
+# numbers 4 and 7 are very distinct. There is some overlap between 6 and 0 and between 2 and 3
+# but you can still get some separation. All the numbers in the middle are 'problematic' and 
+# probably need a larger amount training data.
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_123.webp)
+
+```python
+# how many components would we have to add to reach 80% explained variance
+explained_variance = []
+
+for n in range(1,65):
+    pca = PCA(n_components=n)
+    pca.fit(digits_scaled)
+    
+    explained_variance.append(np.sum(pca.explained_variance_ratio_))
+```
+
+```python
+plt.figure(figsize=(16, 5))
+plt.title('Explained Variance by Number of Principal Components')
+plt.xlabel('Principal Components')
+sns.set(style='darkgrid')
+sns.barplot(
+    data=pd.DataFrame(explained_variance, columns=['Explained Variance']),
+    x=np.arange(1,65),
+    y='Explained Variance'
+)
+
+plt.savefig('assets/Scikit_Learn_124.webp', bbox_inches='tight')
+# we need more than 20 principal components out of 64 to reach 80% expainable variance:
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_124.webp)
+
+```python
+# rerun the training for 3 components for ~30% explained variance
+pca_model3 = PCA(n_components=3)
+pca_results3 = pca_model3.fit_transform(digits_scaled)
+print(np.sum(pca_model3.explained_variance_ratio_))
+# reducing the number of dimensions from 64 -> 3 leads to 30% explained variance
+```
+
+```python
+X_digits[['PC1','PC2','PC3']] = pca_results3
+X_digits[['PC1','PC2','PC3']].head(5).transpose()
+```
+
+|  | 0 | 1 | 2 | 3 | 4 |
+| -- | -- | -- | -- | -- | -- |
+| PC1 | 1.914213 | 0.588981 | 1.302030 | -3.020765 | 4.528946 |
+| PC2 | -0.954510 | 0.924646 | -0.317199 | -0.868788 | -1.093498 |
+| PC3 | -3.945982 | 3.924713 | 3.023435 | -0.801779 | 0.973213 |
+
+```python
+%matplotlib notebook
+fig = plt.figure(figsize=(8,8))
+ax = plt.axes(projection='3d')
+ax.scatter3D(
+    xs=X_digits['PC1'],
+    ys=X_digits['PC2'],
+    zs=X_digits['PC3'],
+    c=digits_labels,
+    cmap='tab20'
+)
+ax.set_title('PCA Digits Dataset - Coloured by Labels')
+ax.set(
+    xticklabels=[],
+    yticklabels=[],
+    zticklabels=[],
+    xlabel='PC1',
+    ylabel='PC2',
+    zlabel='PC3',
+)
+
+# plt.savefig('assets/Scikit_Learn_125.webp', bbox_inches='tight')
+```
+
+![scikit-learn - Machine Learning in Python](https://github.com/mpolinowski/python-scikitlearn-cheatsheet/raw/master/assets/Scikit_Learn_125.webp)
